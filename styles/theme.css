@@ -1,0 +1,82 @@
+/* White-label theming system for multi-tenant branding */
+/* CSS custom properties that can be dynamically updated per tenant */
+
+:root {
+  /* Brand colors - can be overridden per tenant */
+  --brand-bg: #0f172a;
+  --brand-primary: #6366f1;
+  --brand-accent: #8b5cf6;
+
+  /* Derived brand colors for consistency */
+  --brand-primary-hover: color-mix(in srgb, var(--brand-primary) 90%, white);
+  --brand-primary-light: color-mix(in srgb, var(--brand-primary) 20%, white);
+  --brand-accent-hover: color-mix(in srgb, var(--brand-accent) 90%, white);
+  --brand-accent-light: color-mix(in srgb, var(--brand-accent) 20%, white);
+
+  /* Brand text colors */
+  --brand-text-on-primary: white;
+  --brand-text-on-accent: white;
+  --brand-text-on-bg: white;
+}
+
+/* Utility classes for brand theming */
+.brand-bg {
+  background-color: var(--brand-bg);
+  color: var(--brand-text-on-bg);
+}
+
+.brand-primary {
+  background-color: var(--brand-primary);
+  color: var(--brand-text-on-primary);
+}
+
+.brand-primary-hover:hover {
+  background-color: var(--brand-primary-hover);
+}
+
+.brand-accent {
+  background-color: var(--brand-accent);
+  color: var(--brand-text-on-accent);
+}
+
+.brand-accent-hover:hover {
+  background-color: var(--brand-accent-hover);
+}
+
+.text-brand-primary {
+  color: var(--brand-primary);
+}
+
+.text-brand-accent {
+  color: var(--brand-accent);
+}
+
+.border-brand-primary {
+  border-color: var(--brand-primary);
+}
+
+.border-brand-accent {
+  border-color: var(--brand-accent);
+}
+
+/* Override default primary colors with brand colors */
+.bg-primary {
+  background-color: var(--brand-primary) !important;
+}
+
+.text-primary {
+  color: var(--brand-primary) !important;
+}
+
+.border-primary {
+  border-color: var(--brand-primary) !important;
+}
+
+/* Sidebar branding overrides */
+.sidebar-brand {
+  background-color: var(--brand-bg);
+}
+
+.sidebar-brand-accent {
+  background-color: var(--brand-accent);
+}
