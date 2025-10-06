@@ -19,9 +19,9 @@ export function BrandingForm({ profile }: BrandingFormProps) {
   const { toast } = useToast()
   const [loading, setLoading] = useState(false)
   const [theme, setTheme] = useState<ThemeConfig>({
-    brand_bg: "#0f172a",
-    brand_primary: "#6366f1",
-    brand_accent: "#8b5cf6",
+    brand_bg: "#232323",
+    brand_primary: "#d1ecea",
+    brand_accent: "#d1ecea",
     ai_name: "Ellie",
   })
 
@@ -97,7 +97,7 @@ export function BrandingForm({ profile }: BrandingFormProps) {
             type="text"
             value={theme.brand_primary}
             onChange={(e) => handleColorChange("brand_primary", e.target.value)}
-            placeholder="#6366f1"
+            placeholder="#d1ecea"
             className="flex-1"
           />
         </div>
@@ -117,7 +117,7 @@ export function BrandingForm({ profile }: BrandingFormProps) {
             type="text"
             value={theme.brand_accent}
             onChange={(e) => handleColorChange("brand_accent", e.target.value)}
-            placeholder="#8b5cf6"
+            placeholder="#d1ecea"
             className="flex-1"
           />
         </div>
@@ -137,7 +137,7 @@ export function BrandingForm({ profile }: BrandingFormProps) {
             type="text"
             value={theme.brand_bg}
             onChange={(e) => handleColorChange("brand_bg", e.target.value)}
-            placeholder="#0f172a"
+            placeholder="#232323"
             className="flex-1"
           />
         </div>

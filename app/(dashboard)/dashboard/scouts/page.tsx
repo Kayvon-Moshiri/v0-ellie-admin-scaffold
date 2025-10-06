@@ -14,48 +14,46 @@ export default async function ScoutsPage() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Scout Network</h1>
-          <p className="text-muted-foreground">Submit and track company discoveries</p>
+          <h1 className="text-3xl font-serif font-bold tracking-tight">Scout Network</h1>
+          <p className="text-muted-foreground/80">Submit and track company discoveries</p>
         </div>
-        <Button size="sm">
+        <Button size="sm" className="bg-primary hover:bg-primary/90">
           <Plus className="h-4 w-4 mr-2" />
           Submit Company
         </Button>
       </div>
 
-      {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card className="bg-card/50 border-border/50">
+        <Card className="bg-card/30 border-border/60 hover:border-primary/40 transition-colors">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">Your Submissions</CardTitle>
-            <UserSearch className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium text-muted-foreground/80">Your Submissions</CardTitle>
+            <UserSearch className="h-4 w-4 text-muted-foreground/60" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">12</div>
-            <Badge variant="default" className="text-xs mt-1">
+            <Badge variant="default" className="text-xs mt-1 bg-primary/20 text-primary hover:bg-primary/30">
               +3 this month
             </Badge>
           </CardContent>
         </Card>
-        <Card className="bg-card/50 border-border/50">
+        <Card className="bg-card/30 border-border/60 hover:border-primary/40 transition-colors">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">Approved</CardTitle>
-            <CheckCircle className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium text-muted-foreground/80">Approved</CardTitle>
+            <CheckCircle className="h-4 w-4 text-muted-foreground/60" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">8</div>
-            <Badge variant="default" className="text-xs mt-1">
+            <Badge variant="default" className="text-xs mt-1 bg-primary/20 text-primary hover:bg-primary/30">
               67% approval rate
             </Badge>
           </CardContent>
         </Card>
-        <Card className="bg-card/50 border-border/50">
+        <Card className="bg-card/30 border-border/60 hover:border-primary/40 transition-colors">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">Pending Review</CardTitle>
-            <Clock className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium text-muted-foreground/80">Pending Review</CardTitle>
+            <Clock className="h-4 w-4 text-muted-foreground/60" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">3</div>
@@ -64,23 +62,22 @@ export default async function ScoutsPage() {
             </Badge>
           </CardContent>
         </Card>
-        <Card className="bg-card/50 border-border/50">
+        <Card className="bg-card/30 border-border/60 hover:border-primary/40 transition-colors">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">Avg Quality Score</CardTitle>
-            <TrendingUp className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium text-muted-foreground/80">Avg Quality Score</CardTitle>
+            <TrendingUp className="h-4 w-4 text-muted-foreground/60" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">7.8</div>
-            <Badge variant="default" className="text-xs mt-1">
+            <Badge variant="default" className="text-xs mt-1 bg-primary/20 text-primary hover:bg-primary/30">
               Out of 10
             </Badge>
           </CardContent>
         </Card>
       </div>
 
-      {/* Main Content */}
       <Tabs defaultValue="submit" className="space-y-4">
-        <TabsList>
+        <TabsList className="bg-card/30 border border-border/60">
           <TabsTrigger value="submit">Submit Company</TabsTrigger>
           <TabsTrigger value="submissions">My Submissions</TabsTrigger>
           {isAdmin && (
@@ -92,10 +89,10 @@ export default async function ScoutsPage() {
         </TabsList>
 
         <TabsContent value="submit" className="space-y-4">
-          <Card className="bg-card/50 border-border/50">
+          <Card className="bg-card/30 border-border/60">
             <CardHeader>
               <CardTitle>Submit a Company</CardTitle>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-muted-foreground/80">
                 Share promising startups with the network. Include sector, stage, and traction details.
               </p>
             </CardHeader>
@@ -106,10 +103,10 @@ export default async function ScoutsPage() {
         </TabsContent>
 
         <TabsContent value="submissions" className="space-y-4">
-          <Card className="bg-card/50 border-border/50">
+          <Card className="bg-card/30 border-border/60">
             <CardHeader>
               <CardTitle>Your Submissions</CardTitle>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-muted-foreground/80">
                 Track the status and quality ratings of your company submissions.
               </p>
             </CardHeader>
@@ -121,13 +118,13 @@ export default async function ScoutsPage() {
 
         {isAdmin && (
           <TabsContent value="admin" className="space-y-4">
-            <Card className="bg-card/50 border-border/50">
+            <Card className="bg-card/30 border-border/60">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
                   <Shield className="h-5 w-5" />
                   <span>Admin Review</span>
                 </CardTitle>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-muted-foreground/80">
                   Review and rate scout submissions to maintain quality standards.
                 </p>
               </CardHeader>

@@ -55,9 +55,9 @@ interface WaitlistApplication {
 const getTierColor = (tier: string) => {
   switch (tier) {
     case "vip":
-      return "bg-purple-100 text-purple-800"
+      return "bg-primary/20 text-primary"
     case "member":
-      return "bg-blue-100 text-blue-800"
+      return "bg-primary/20 text-primary"
     case "startup":
       return "bg-orange-100 text-orange-800"
     case "guest":
@@ -239,15 +239,17 @@ export function WaitlistReview() {
 
         <TabsContent value="pending" className="space-y-4">
           {pendingApplications.length === 0 ? (
-            <Card>
+            <Card className="bg-card border-border">
               <CardContent className="text-center py-8">
-                <CheckCircle className="h-12 w-12 text-green-500 mx-auto mb-4" />
+                <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle className="h-6 w-6 text-primary" />
+                </div>
                 <h3 className="text-lg font-medium mb-2">All Caught Up!</h3>
                 <p className="text-muted-foreground">No pending applications to review.</p>
               </CardContent>
             </Card>
           ) : (
-            <div className="rounded-md border border-border/50">
+            <div className="rounded-md border border-border">
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -261,10 +263,10 @@ export function WaitlistReview() {
                 </TableHeader>
                 <TableBody>
                   {pendingApplications.map((application) => (
-                    <TableRow key={application.id}>
+                    <TableRow key={application.id} className="hover:bg-muted/50 transition-colors">
                       <TableCell>
                         <div className="flex items-center space-x-3">
-                          <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
+                          <div className="h-10 w-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center">
                             <User className="h-5 w-5 text-primary" />
                           </div>
                           <div>
@@ -311,7 +313,12 @@ export function WaitlistReview() {
                       <TableCell>
                         <Dialog>
                           <DialogTrigger asChild>
-                            <Button variant="outline" size="sm" onClick={() => openReviewDialog(application)}>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => openReviewDialog(application)}
+                              className="hover:border-primary/30 hover:bg-primary/5"
+                            >
                               Review
                             </Button>
                           </DialogTrigger>
@@ -328,7 +335,7 @@ export function WaitlistReview() {
 
                             <div className="space-y-6">
                               {/* Profile Summary */}
-                              <Card>
+                              <Card className="bg-card border-border">
                                 <CardHeader>
                                   <CardTitle className="text-lg">Profile Summary</CardTitle>
                                 </CardHeader>
@@ -386,22 +393,22 @@ export function WaitlistReview() {
 
                               {/* AI Insights */}
                               {application.ai_insights && (
-                                <Card className="border-blue-200 bg-blue-50">
+                                <Card className="border-primary/30 bg-primary/5">
                                   <CardHeader>
                                     <CardTitle className="text-lg flex items-center space-x-2">
-                                      <Sparkles className="h-5 w-5 text-blue-600" />
+                                      <Sparkles className="h-5 w-5 text-primary" />
                                       <span>AI Insights</span>
                                     </CardTitle>
                                   </CardHeader>
                                   <CardContent>
-                                    <p className="text-sm text-blue-900">{application.ai_insights}</p>
+                                    <p className="text-sm">{application.ai_insights}</p>
                                   </CardContent>
                                 </Card>
                               )}
 
                               {/* AI Recommendation */}
                               {application.ai_recommendation && (
-                                <Card>
+                                <Card className="bg-card border-border">
                                   <CardHeader>
                                     <CardTitle className="text-lg">AI Recommendation</CardTitle>
                                   </CardHeader>
@@ -431,7 +438,7 @@ export function WaitlistReview() {
                               )}
 
                               {/* Admin Decision */}
-                              <Card>
+                              <Card className="bg-card border-border">
                                 <CardHeader>
                                   <CardTitle className="text-lg">Admin Decision</CardTitle>
                                 </CardHeader>
@@ -471,7 +478,7 @@ export function WaitlistReview() {
                                     <Button
                                       onClick={() => handleApprove(application.id, selectedTier, adminNotes)}
                                       disabled={processing || !selectedTier}
-                                      className="bg-green-600 hover:bg-green-700"
+                                      className="bg-primary hover:bg-primary/90 text-primary-foreground"
                                     >
                                       <CheckCircle className="h-4 w-4 mr-2" />
                                       {processing ? "Approving..." : "Approve"}
@@ -480,6 +487,7 @@ export function WaitlistReview() {
                                       variant="outline"
                                       onClick={() => handleScheduleCall(application.id, adminNotes)}
                                       disabled={processing}
+                                      className="hover:border-primary/30 hover:bg-primary/5"
                                     >
                                       <Calendar className="h-4 w-4 mr-2" />
                                       {processing ? "Scheduling..." : "Schedule Call"}
@@ -509,13 +517,13 @@ export function WaitlistReview() {
 
         <TabsContent value="processed" className="space-y-4">
           {processedApplications.length === 0 ? (
-            <Card>
+            <Card className="bg-card border-border">
               <CardContent className="text-center py-8">
                 <p className="text-muted-foreground">No processed applications yet.</p>
               </CardContent>
             </Card>
           ) : (
-            <div className="rounded-md border border-border/50">
+            <div className="rounded-md border border-border">
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -528,7 +536,7 @@ export function WaitlistReview() {
                 </TableHeader>
                 <TableBody>
                   {processedApplications.map((application) => (
-                    <TableRow key={application.id}>
+                    <TableRow key={application.id} className="hover:bg-muted/50 transition-colors">
                       <TableCell>
                         <div>
                           <div className="font-medium">{application.full_name}</div>

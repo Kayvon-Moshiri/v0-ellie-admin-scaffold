@@ -74,8 +74,8 @@ export default async function HeatboardPage() {
     <div className="flex-1 space-y-6 p-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Heatboard</h1>
-          <p className="text-muted-foreground">Real-time activity and momentum across your network</p>
+          <h1 className="text-3xl font-bold font-serif tracking-tight">Heatboard</h1>
+          <p className="text-muted-foreground/80">Real-time activity and momentum across your network</p>
         </div>
       </div>
 

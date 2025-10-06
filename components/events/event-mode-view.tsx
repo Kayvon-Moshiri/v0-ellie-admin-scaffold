@@ -49,8 +49,8 @@ export function EventModeView({ event, mode, isKioskMode }: EventModeViewProps) 
             </Link>
           </Button>
           <div>
-            <h1 className="text-3xl font-bold tracking-tight">{event.name}</h1>
-            <div className="flex items-center gap-4 text-muted-foreground mt-1">
+            <h1 className="text-3xl font-bold font-serif tracking-tight">{event.name}</h1>
+            <div className="flex items-center gap-4 text-muted-foreground/80 mt-1">
               <span className="flex items-center gap-1">
                 <Calendar className="h-4 w-4" />
                 {new Date(event.starts_at).toLocaleDateString()}
@@ -80,7 +80,7 @@ export function EventModeView({ event, mode, isKioskMode }: EventModeViewProps) 
 
       {/* Mode Tabs */}
       <Tabs value={currentMode} onValueChange={(value) => setCurrentMode(value as any)}>
-        <TabsList className="grid w-full grid-cols-3">
+        <TabsList className="grid w-full grid-cols-3 bg-muted/30">
           <TabsTrigger value="pre">Pre-Event</TabsTrigger>
           <TabsTrigger value="live">At-Event</TabsTrigger>
           <TabsTrigger value="post">Post-Event</TabsTrigger>

@@ -213,8 +213,8 @@ export function NetworkGraphView({ className }: NetworkGraphViewProps) {
     <Card className={`bg-card/50 border-border/50 ${isFullscreen ? "fixed inset-4 z-50" : ""} ${className}`}>
       <CardHeader className="flex flex-row items-center justify-between">
         <div>
-          <CardTitle className="text-lg">Network Graph</CardTitle>
-          <p className="text-sm text-muted-foreground">Interactive visualization of your network connections</p>
+          <CardTitle className="text-lg font-serif">Network Graph</CardTitle>
+          <p className="text-sm text-muted-foreground/80">Interactive visualization of your network connections</p>
         </div>
         <div className="flex items-center space-x-2">
           <Badge variant="outline" className="text-xs">
@@ -231,12 +231,12 @@ export function NetworkGraphView({ className }: NetworkGraphViewProps) {
           <div className="flex items-center space-x-2 flex-1">
             {/* Search */}
             <div className="relative flex-1 max-w-xs">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground/60" />
               <Input
                 placeholder="Search network..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 h-9"
+                className="pl-10 h-9 bg-background/50"
               />
             </div>
 
@@ -278,7 +278,7 @@ export function NetworkGraphView({ className }: NetworkGraphViewProps) {
                     step={10}
                     className="mt-2"
                   />
-                  <div className="text-xs text-muted-foreground mt-1">Min: {activityThreshold[0]}%</div>
+                  <div className="text-xs text-muted-foreground/80 mt-1">Min: {activityThreshold[0]}%</div>
                 </div>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -306,7 +306,7 @@ export function NetworkGraphView({ className }: NetworkGraphViewProps) {
         </div>
 
         {/* Graph Legend */}
-        <div className="mt-4 flex items-center justify-between text-xs text-muted-foreground">
+        <div className="mt-4 flex items-center justify-between text-xs text-muted-foreground/80">
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2">
               <div className="h-3 w-3 rounded-full bg-primary"></div>

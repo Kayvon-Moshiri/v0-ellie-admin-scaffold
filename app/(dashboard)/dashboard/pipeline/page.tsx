@@ -37,17 +37,19 @@ export default async function PipelinePage() {
           <h1 className="text-3xl font-bold tracking-tight">Waitlist Pipeline</h1>
           <p className="text-muted-foreground">Review and approve member applications with AI insights</p>
         </div>
-        <Badge variant="outline" className="text-lg px-4 py-2">
-          <Clock className="h-4 w-4 mr-2" />
+        <Badge variant="outline" className="text-lg px-4 py-2 border-primary/30 bg-primary/5">
+          <Clock className="h-4 w-4 mr-2 text-primary" />
           {stats.pending} Pending Review
         </Badge>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card className="bg-card/50 border-border/50">
+        <Card className="bg-card border-border hover:border-primary/30 transition-colors">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">Pending Review</CardTitle>
-            <Clock className="h-4 w-4 text-yellow-500" />
+            <div className="h-8 w-8 rounded-lg bg-yellow-500/10 flex items-center justify-center">
+              <Clock className="h-4 w-4 text-yellow-600" />
+            </div>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{stats.pending}</div>
@@ -57,36 +59,42 @@ export default async function PipelinePage() {
           </CardContent>
         </Card>
 
-        <Card className="bg-card/50 border-border/50">
+        <Card className="bg-card border-border hover:border-primary/30 transition-colors">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">Approved</CardTitle>
-            <CheckCircle className="h-4 w-4 text-green-500" />
+            <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center">
+              <CheckCircle className="h-4 w-4 text-primary" />
+            </div>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{stats.approved}</div>
-            <Badge variant="default" className="text-xs mt-1">
+            <Badge variant="default" className="text-xs mt-1 bg-primary text-primary-foreground">
               {approvalRate.toFixed(0)}% approval rate
             </Badge>
           </CardContent>
         </Card>
 
-        <Card className="bg-card/50 border-border/50">
+        <Card className="bg-card border-border hover:border-primary/30 transition-colors">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">Scheduled Calls</CardTitle>
-            <Calendar className="h-4 w-4 text-blue-500" />
+            <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center">
+              <Calendar className="h-4 w-4 text-primary" />
+            </div>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{stats.scheduledCalls}</div>
-            <Badge variant="default" className="text-xs mt-1">
+            <Badge variant="default" className="text-xs mt-1 bg-primary text-primary-foreground">
               15-min intro calls
             </Badge>
           </CardContent>
         </Card>
 
-        <Card className="bg-card/50 border-border/50">
+        <Card className="bg-card border-border hover:border-primary/30 transition-colors">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">Rejected</CardTitle>
-            <XCircle className="h-4 w-4 text-red-500" />
+            <div className="h-8 w-8 rounded-lg bg-red-500/10 flex items-center justify-center">
+              <XCircle className="h-4 w-4 text-red-600" />
+            </div>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{stats.rejected}</div>

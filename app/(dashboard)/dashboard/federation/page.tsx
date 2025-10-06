@@ -211,47 +211,51 @@ export default function FederationPage() {
   }
 
   return (
-    <div className="space-y-6">
-      {/* Header */}
+    <div className="space-y-8">
       <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold">Network Federation</h1>
-          <p className="text-muted-foreground">Connect with other tenant networks while preserving privacy</p>
+        <div className="space-y-2">
+          <h1 className="font-serif text-4xl font-light tracking-tight text-foreground">Network Federation</h1>
+          <p className="text-base text-muted-foreground/90">
+            Connect with other tenant networks while preserving privacy
+          </p>
         </div>
         <Dialog open={showCreateDialog} onOpenChange={setShowCreateDialog}>
           <DialogTrigger asChild>
-            <Button className="flex items-center space-x-2">
+            <Button className="flex items-center gap-2 bg-primary hover:bg-primary/90 shadow-sm">
               <Plus className="h-4 w-4" />
               <span>Request Federation</span>
             </Button>
           </DialogTrigger>
-          <DialogContent>
+          <DialogContent className="sm:max-w-[500px]">
             <DialogHeader>
-              <DialogTitle>Request Network Federation</DialogTitle>
-              <DialogDescription>
+              <DialogTitle className="font-serif text-2xl font-light">Request Network Federation</DialogTitle>
+              <DialogDescription className="text-muted-foreground/90">
                 Send a federation request to another tenant network. Both parties must consent to share data.
               </DialogDescription>
             </DialogHeader>
-            <div className="space-y-4">
-              <div>
-                <Label htmlFor="tenant-slug">Target Network Slug</Label>
+            <div className="space-y-5">
+              <div className="space-y-2">
+                <Label htmlFor="tenant-slug" className="text-sm font-medium">
+                  Target Network Slug
+                </Label>
                 <Input
                   id="tenant-slug"
                   placeholder="e.g., acme-ventures"
                   value={newRequest.tenantSlug}
                   onChange={(e) => setNewRequest((prev) => ({ ...prev, tenantSlug: e.target.value }))}
+                  className="border-border/60 focus:border-primary"
                 />
               </div>
 
-              <Separator />
+              <Separator className="bg-border/60" />
 
-              <div className="space-y-3">
-                <Label>Data Sharing Permissions</Label>
+              <div className="space-y-4">
+                <Label className="text-sm font-medium">Data Sharing Permissions</Label>
 
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="font-medium">People Directory</div>
-                    <div className="text-sm text-muted-foreground">Share non-PII profile data</div>
+                <div className="flex items-center justify-between py-2">
+                  <div className="space-y-0.5">
+                    <div className="text-sm font-medium">People Directory</div>
+                    <div className="text-sm text-muted-foreground/80">Share non-PII profile data</div>
                   </div>
                   <Switch
                     checked={newRequest.sharePeople}
@@ -259,10 +263,10 @@ export default function FederationPage() {
                   />
                 </div>
 
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="font-medium">Network Connections</div>
-                    <div className="text-sm text-muted-foreground">Share aggregated connection data</div>
+                <div className="flex items-center justify-between py-2">
+                  <div className="space-y-0.5">
+                    <div className="text-sm font-medium">Network Connections</div>
+                    <div className="text-sm text-muted-foreground/80">Share aggregated connection data</div>
                   </div>
                   <Switch
                     checked={newRequest.shareEdges}
@@ -270,10 +274,10 @@ export default function FederationPage() {
                   />
                 </div>
 
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="font-medium">Company Directory</div>
-                    <div className="text-sm text-muted-foreground">Share startup/company listings</div>
+                <div className="flex items-center justify-between py-2">
+                  <div className="space-y-0.5">
+                    <div className="text-sm font-medium">Company Directory</div>
+                    <div className="text-sm text-muted-foreground/80">Share startup/company listings</div>
                   </div>
                   <Switch
                     checked={newRequest.shareCompanies}
@@ -282,86 +286,99 @@ export default function FederationPage() {
                 </div>
               </div>
 
-              <div className="flex items-center space-x-2 p-3 bg-blue-50 rounded-lg">
-                <Shield className="h-4 w-4 text-blue-600" />
-                <div className="text-sm text-blue-800">
+              <div className="flex items-start gap-3 p-4 bg-primary/5 border border-primary/10 rounded-lg">
+                <Shield className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                <div className="text-sm text-foreground/80">
                   Only non-PII data is shared. Email addresses and private information remain protected.
                 </div>
               </div>
 
-              <div className="flex justify-end space-x-2">
-                <Button variant="outline" onClick={() => setShowCreateDialog(false)}>
+              <div className="flex justify-end gap-3">
+                <Button variant="outline" onClick={() => setShowCreateDialog(false)} className="border-border/60">
                   Cancel
                 </Button>
-                <Button onClick={createFederationRequest}>Send Request</Button>
+                <Button onClick={createFederationRequest} className="bg-primary hover:bg-primary/90 shadow-sm">
+                  Send Request
+                </Button>
               </div>
             </div>
           </DialogContent>
         </Dialog>
       </div>
 
-      {/* Federation Status Overview */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Card>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <Card className="border-border/60 shadow-sm">
           <CardContent className="p-6">
-            <div className="flex items-center space-x-2">
-              <Network className="h-5 w-5 text-green-600" />
+            <div className="flex items-center gap-3">
+              <div className="p-2.5 bg-green-50 rounded-lg">
+                <Network className="h-5 w-5 text-green-600" />
+              </div>
               <div>
-                <div className="text-2xl font-bold">{consents.filter((c) => c.status === "active").length}</div>
-                <div className="text-sm text-muted-foreground">Active Federations</div>
+                <div className="text-2xl font-light">{consents.filter((c) => c.status === "active").length}</div>
+                <div className="text-sm text-muted-foreground/80">Active Federations</div>
               </div>
             </div>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="border-border/60 shadow-sm">
           <CardContent className="p-6">
-            <div className="flex items-center space-x-2">
-              <Clock className="h-5 w-5 text-yellow-600" />
+            <div className="flex items-center gap-3">
+              <div className="p-2.5 bg-amber-50 rounded-lg">
+                <Clock className="h-5 w-5 text-amber-600" />
+              </div>
               <div>
-                <div className="text-2xl font-bold">{consents.filter((c) => c.status === "pending").length}</div>
-                <div className="text-sm text-muted-foreground">Pending Requests</div>
+                <div className="text-2xl font-light">{consents.filter((c) => c.status === "pending").length}</div>
+                <div className="text-sm text-muted-foreground/80">Pending Requests</div>
               </div>
             </div>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="border-border/60 shadow-sm">
           <CardContent className="p-6">
-            <div className="flex items-center space-x-2">
-              <Users className="h-5 w-5 text-blue-600" />
+            <div className="flex items-center gap-3">
+              <div className="p-2.5 bg-primary/10 rounded-lg">
+                <Users className="h-5 w-5 text-primary" />
+              </div>
               <div>
-                <div className="text-2xl font-bold">{availableTenants.length}</div>
-                <div className="text-sm text-muted-foreground">Available Networks</div>
+                <div className="text-2xl font-light">{availableTenants.length}</div>
+                <div className="text-sm text-muted-foreground/80">Available Networks</div>
               </div>
             </div>
           </CardContent>
         </Card>
       </div>
 
-      {/* Federation Consents */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Federation Agreements</CardTitle>
+      <Card className="border-border/60 shadow-sm">
+        <CardHeader className="border-b border-border/60 bg-muted/30">
+          <CardTitle className="font-serif text-2xl font-light">Federation Agreements</CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="p-6">
           {consents.length === 0 ? (
-            <div className="text-center py-8">
-              <Network className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-              <h3 className="text-lg font-medium mb-2">No Federation Agreements</h3>
-              <p className="text-muted-foreground mb-4">
+            <div className="text-center py-12">
+              <div className="inline-flex p-4 bg-muted/50 rounded-full mb-4">
+                <Network className="h-8 w-8 text-muted-foreground/60" />
+              </div>
+              <h3 className="font-serif text-xl font-light mb-2">No Federation Agreements</h3>
+              <p className="text-muted-foreground/80 mb-6 max-w-md mx-auto">
                 Start by requesting federation with another network to expand your reach.
               </p>
-              <Button onClick={() => setShowCreateDialog(true)}>Request Federation</Button>
+              <Button onClick={() => setShowCreateDialog(true)} className="bg-primary hover:bg-primary/90 shadow-sm">
+                Request Federation
+              </Button>
             </div>
           ) : (
             <div className="space-y-4">
               {consents.map((consent) => (
-                <div key={consent.id} className="border rounded-lg p-4">
+                <div
+                  key={consent.id}
+                  className="border border-border/60 rounded-lg p-5 hover:border-border transition-colors"
+                >
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-4">
-                      <Avatar>
-                        <AvatarFallback>
+                    <div className="flex items-center gap-4">
+                      <Avatar className="h-11 w-11 border border-border/60">
+                        <AvatarFallback className="bg-muted/50 text-foreground/70 font-medium">
                           {consent.counterparty_name
                             .split(" ")
                             .map((n) => n[0])
@@ -369,25 +386,34 @@ export default function FederationPage() {
                         </AvatarFallback>
                       </Avatar>
                       <div>
-                        <div className="font-medium">{consent.counterparty_name}</div>
-                        <div className="text-sm text-muted-foreground">
+                        <div className="font-medium text-foreground">{consent.counterparty_name}</div>
+                        <div className="text-sm text-muted-foreground/80">
                           {consent.owner_tenant === tenant?.id ? "Outgoing Request" : "Incoming Request"}
                         </div>
                       </div>
                     </div>
 
-                    <div className="flex items-center space-x-3">
+                    <div className="flex items-center gap-3">
                       <Badge className={getStatusColor(consent.status)}>
                         {getStatusIcon(consent.status)}
-                        <span className="ml-1 capitalize">{consent.status}</span>
+                        <span className="ml-1.5 capitalize">{consent.status}</span>
                       </Badge>
 
                       {consent.status === "pending" && consent.counterparty_tenant === tenant?.id && (
-                        <div className="flex space-x-2">
-                          <Button size="sm" onClick={() => respondToRequest(consent.id, "accept")}>
+                        <div className="flex gap-2">
+                          <Button
+                            size="sm"
+                            onClick={() => respondToRequest(consent.id, "accept")}
+                            className="bg-green-600 hover:bg-green-700 text-white"
+                          >
                             Accept
                           </Button>
-                          <Button size="sm" variant="outline" onClick={() => respondToRequest(consent.id, "decline")}>
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => respondToRequest(consent.id, "decline")}
+                            className="border-border/60"
+                          >
                             Decline
                           </Button>
                         </div>
@@ -396,20 +422,22 @@ export default function FederationPage() {
                       {consent.status === "active" && (
                         <AlertDialog>
                           <AlertDialogTrigger asChild>
-                            <Button size="sm" variant="destructive">
+                            <Button size="sm" variant="destructive" className="shadow-sm">
                               Revoke
                             </Button>
                           </AlertDialogTrigger>
                           <AlertDialogContent>
                             <AlertDialogHeader>
-                              <AlertDialogTitle>Revoke Federation</AlertDialogTitle>
-                              <AlertDialogDescription>
+                              <AlertDialogTitle className="font-serif text-2xl font-light">
+                                Revoke Federation
+                              </AlertDialogTitle>
+                              <AlertDialogDescription className="text-muted-foreground/90">
                                 This will immediately stop data sharing with {consent.counterparty_name}. This action
                                 cannot be undone.
                               </AlertDialogDescription>
                             </AlertDialogHeader>
                             <AlertDialogFooter>
-                              <AlertDialogCancel>Cancel</AlertDialogCancel>
+                              <AlertDialogCancel className="border-border/60">Cancel</AlertDialogCancel>
                               <AlertDialogAction
                                 onClick={() => revokeFederation(consent.id)}
                                 className="bg-red-600 hover:bg-red-700"
@@ -423,24 +451,28 @@ export default function FederationPage() {
                     </div>
                   </div>
 
-                  <Separator className="my-3" />
+                  <Separator className="my-4 bg-border/60" />
 
                   <div className="grid grid-cols-3 gap-4 text-sm">
-                    <div className="flex items-center space-x-2">
-                      <Users className="h-4 w-4" />
-                      <span className={consent.share_people ? "text-green-600" : "text-muted-foreground"}>
+                    <div className="flex items-center gap-2">
+                      <Users className="h-4 w-4 text-muted-foreground/60" />
+                      <span
+                        className={consent.share_people ? "text-green-600 font-medium" : "text-muted-foreground/60"}
+                      >
                         People {consent.share_people ? "✓" : "✗"}
                       </span>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <Link2 className="h-4 w-4" />
-                      <span className={consent.share_edges ? "text-green-600" : "text-muted-foreground"}>
+                    <div className="flex items-center gap-2">
+                      <Link2 className="h-4 w-4 text-muted-foreground/60" />
+                      <span className={consent.share_edges ? "text-green-600 font-medium" : "text-muted-foreground/60"}>
                         Connections {consent.share_edges ? "✓" : "✗"}
                       </span>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <Building className="h-4 w-4" />
-                      <span className={consent.share_companies ? "text-green-600" : "text-muted-foreground"}>
+                    <div className="flex items-center gap-2">
+                      <Building className="h-4 w-4 text-muted-foreground/60" />
+                      <span
+                        className={consent.share_companies ? "text-green-600 font-medium" : "text-muted-foreground/60"}
+                      >
                         Companies {consent.share_companies ? "✓" : "✗"}
                       </span>
                     </div>
@@ -452,14 +484,15 @@ export default function FederationPage() {
         </CardContent>
       </Card>
 
-      {/* Privacy Notice */}
-      <Card className="border-yellow-200 bg-yellow-50">
-        <CardContent className="p-4">
-          <div className="flex items-start space-x-3">
-            <AlertTriangle className="h-5 w-5 text-yellow-600 mt-0.5" />
+      <Card className="border-amber-200/60 bg-amber-50/50 shadow-sm">
+        <CardContent className="p-5">
+          <div className="flex items-start gap-3">
+            <div className="p-2 bg-amber-100 rounded-lg flex-shrink-0">
+              <AlertTriangle className="h-4 w-4 text-amber-700" />
+            </div>
             <div>
-              <h4 className="font-medium text-yellow-800">Privacy & Security</h4>
-              <p className="text-sm text-yellow-700 mt-1">
+              <h4 className="font-medium text-amber-900 mb-1">Privacy & Security</h4>
+              <p className="text-sm text-amber-800/90 leading-relaxed">
                 Federation only shares non-personally identifiable information (non-PII). Email addresses, phone
                 numbers, and private profile data remain protected within your tenant. You can revoke federation access
                 at any time.

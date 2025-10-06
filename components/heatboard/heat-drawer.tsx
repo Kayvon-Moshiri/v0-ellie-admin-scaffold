@@ -93,9 +93,9 @@ export function HeatDrawer({ item, onClose }: HeatDrawerProps) {
   const getTierColor = (tier: string) => {
     switch (tier) {
       case "vip":
-        return "bg-purple-500"
+        return "bg-primary"
       case "member":
-        return "bg-blue-500"
+        return "bg-primary"
       case "guest":
         return "bg-gray-500"
       case "startup":
@@ -110,9 +110,9 @@ export function HeatDrawer({ item, onClose }: HeatDrawerProps) {
       case "seed":
         return "bg-green-500"
       case "series a":
-        return "bg-blue-500"
+        return "bg-primary"
       case "series b":
-        return "bg-purple-500"
+        return "bg-primary"
       case "series c+":
         return "bg-red-500"
       default:

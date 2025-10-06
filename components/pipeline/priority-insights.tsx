@@ -189,7 +189,7 @@ export function PriorityInsights() {
         </CardHeader>
         <CardContent>
           <div className="flex items-center space-x-2">
-            <Zap className="h-5 w-5 text-blue-600" />
+            <Zap className="h-5 w-5 text-primary" />
             <span className="text-2xl font-bold">{stats.avgPriorityScore.toFixed(1)}</span>
           </div>
           <Progress value={(stats.avgPriorityScore / 10) * 100} className="mt-2" />
@@ -203,7 +203,7 @@ export function PriorityInsights() {
         </CardHeader>
         <CardContent>
           <div className="flex items-center space-x-2">
-            <Users className="h-5 w-5 text-purple-600" />
+            <Users className="h-5 w-5 text-primary" />
             <span className="text-2xl font-bold">{stats.weeklyLimitUtilization.toFixed(0)}%</span>
           </div>
           <Progress value={stats.weeklyLimitUtilization} className="mt-2" />

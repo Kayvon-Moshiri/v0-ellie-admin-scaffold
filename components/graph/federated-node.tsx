@@ -37,9 +37,9 @@ function FederatedNode({ data, selected, onContextAction }: FederatedNodeProps) 
   const getTierColor = (tier: string) => {
     switch (tier) {
       case "vip":
-        return "bg-purple-100 text-purple-800"
+        return "bg-primary/20 text-primary"
       case "member":
-        return "bg-blue-100 text-blue-800"
+        return "bg-primary/20 text-primary"
       case "startup":
         return "bg-orange-100 text-orange-800"
       default:
@@ -59,13 +59,13 @@ function FederatedNode({ data, selected, onContextAction }: FederatedNodeProps) 
         className={`
           relative bg-card border-2 rounded-lg p-3 shadow-sm transition-all duration-200 min-w-[180px]
           ${selected ? "border-primary shadow-lg" : "border-border hover:border-primary/50"}
-          ${data.isFederated ? "ring-2 ring-blue-200 ring-offset-1" : ""}
+          ${data.isFederated ? "ring-2 ring-primary/30 ring-offset-1" : ""}
           ${getScarcityColor(data.scarcityScore)}
         `}
       >
         {/* Federation indicator */}
         {data.isFederated && (
-          <div className="absolute -top-2 -right-2 bg-blue-500 text-white rounded-full p-1">
+          <div className="absolute -top-2 -right-2 bg-primary text-primary-foreground rounded-full p-1">
             <Network className="h-3 w-3" />
           </div>
         )}
@@ -101,7 +101,7 @@ function FederatedNode({ data, selected, onContextAction }: FederatedNodeProps) 
           </div>
 
           {data.isFederated && (
-            <div className="flex items-center space-x-1 text-xs text-blue-600">
+            <div className="flex items-center space-x-1 text-xs text-primary">
               <Network className="h-3 w-3" />
               <span>Federated</span>
             </div>

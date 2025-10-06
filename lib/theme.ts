@@ -8,9 +8,9 @@ export interface ThemeConfig {
 }
 
 export const defaultTheme: ThemeConfig = {
-  brand_bg: "#0f172a",
-  brand_primary: "#6366f1",
-  brand_accent: "#8b5cf6",
+  brand_bg: "#232323",
+  brand_primary: "#d1ecea",
+  brand_accent: "#d1ecea",
   ai_name: "Ellie",
 }
 

@@ -192,70 +192,76 @@ export default function FederationPrivacyPage() {
   }
 
   return (
-    <div className="space-y-6">
-      {/* Header */}
+    <div className="space-y-8">
       <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold">Privacy & Rate Limits</h1>
-          <p className="text-muted-foreground">Manage your federation privacy settings and monitor rate limits</p>
+        <div className="space-y-2">
+          <h1 className="font-serif text-4xl font-light tracking-tight text-foreground">Privacy & Rate Limits</h1>
+          <p className="text-base text-muted-foreground/90">
+            Manage your federation privacy settings and monitor rate limits
+          </p>
         </div>
-        <div className="flex items-center space-x-2">
-          <Shield className="h-5 w-5 text-green-600" />
-          <span className="text-sm text-muted-foreground">Privacy Protected</span>
+        <div className="flex items-center gap-2 px-3 py-1.5 bg-green-50 border border-green-200/60 rounded-lg">
+          <Shield className="h-4 w-4 text-green-600" />
+          <span className="text-sm text-green-700 font-medium">Privacy Protected</span>
         </div>
       </div>
 
-      {/* Privacy Settings */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center space-x-2">
-            <Eye className="h-5 w-5" />
+      <Card className="border-border/60 shadow-sm">
+        <CardHeader className="border-b border-border/60 bg-muted/30">
+          <CardTitle className="flex items-center gap-2 font-serif text-2xl font-light">
+            <Eye className="h-5 w-5 text-muted-foreground" />
             <span>Profile Visibility</span>
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
-          <div>
-            <Label htmlFor="visibility-select">Visibility Level</Label>
+        <CardContent className="p-6 space-y-5">
+          <div className="space-y-2">
+            <Label htmlFor="visibility-select" className="text-sm font-medium">
+              Visibility Level
+            </Label>
             <Select
               value={privacySettings.visibility}
               onValueChange={(value: "private" | "members" | "federated") =>
                 setPrivacySettings((prev) => ({ ...prev, visibility: value }))
               }
             >
-              <SelectTrigger className="mt-1">
+              <SelectTrigger className="border-border/60 focus:border-primary">
                 <SelectValue placeholder="Select visibility level" />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="private">
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center gap-2">
                     <EyeOff className="h-4 w-4" />
                     <span>Private</span>
                   </div>
                 </SelectItem>
                 <SelectItem value="members">
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center gap-2">
                     <Users className="h-4 w-4" />
                     <span>Members Only</span>
                   </div>
                 </SelectItem>
                 <SelectItem value="federated">
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center gap-2">
                     <Eye className="h-4 w-4" />
                     <span>Federated</span>
                   </div>
                 </SelectItem>
               </SelectContent>
             </Select>
-            <p className="text-sm text-muted-foreground mt-1">{getVisibilityDescription(privacySettings.visibility)}</p>
+            <p className="text-sm text-muted-foreground/80 leading-relaxed">
+              {getVisibilityDescription(privacySettings.visibility)}
+            </p>
           </div>
 
-          <Separator />
+          <Separator className="bg-border/60" />
 
-          <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <div>
-                <Label htmlFor="cross-tenant-intros">Allow Cross-Network Introductions</Label>
-                <p className="text-sm text-muted-foreground">
+          <div className="space-y-4">
+            <div className="flex items-center justify-between py-2">
+              <div className="space-y-0.5">
+                <Label htmlFor="cross-tenant-intros" className="text-sm font-medium">
+                  Allow Cross-Network Introductions
+                </Label>
+                <p className="text-sm text-muted-foreground/80">
                   Allow users from other networks to request introductions to you
                 </p>
               </div>
@@ -268,10 +274,14 @@ export default function FederationPrivacyPage() {
               />
             </div>
 
-            <div className="flex items-center justify-between">
-              <div>
-                <Label htmlFor="admin-approval">Require Admin Approval</Label>
-                <p className="text-sm text-muted-foreground">All cross-network intro requests require admin approval</p>
+            <div className="flex items-center justify-between py-2">
+              <div className="space-y-0.5">
+                <Label htmlFor="admin-approval" className="text-sm font-medium">
+                  Require Admin Approval
+                </Label>
+                <p className="text-sm text-muted-foreground/80">
+                  All cross-network intro requests require admin approval
+                </p>
               </div>
               <Switch
                 id="admin-approval"
@@ -283,8 +293,12 @@ export default function FederationPrivacyPage() {
             </div>
           </div>
 
-          <div className="flex justify-end">
-            <Button onClick={updatePrivacySettings} disabled={saving}>
+          <div className="flex justify-end pt-2">
+            <Button
+              onClick={updatePrivacySettings}
+              disabled={saving}
+              className="bg-primary hover:bg-primary/90 shadow-sm"
+            >
               {saving ? (
                 <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
               ) : (
@@ -296,20 +310,21 @@ export default function FederationPrivacyPage() {
         </CardContent>
       </Card>
 
-      {/* Rate Limits */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center space-x-2">
-            <Clock className="h-5 w-5" />
+      <Card className="border-border/60 shadow-sm">
+        <CardHeader className="border-b border-border/60 bg-muted/30">
+          <CardTitle className="flex items-center gap-2 font-serif text-2xl font-light">
+            <Clock className="h-5 w-5 text-muted-foreground" />
             <span>Rate Limit Status</span>
           </CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="p-6">
           {rateLimits.length === 0 ? (
-            <div className="text-center py-8">
-              <Clock className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-              <h3 className="text-lg font-medium mb-2">No Rate Limits Active</h3>
-              <p className="text-muted-foreground">You haven't made any cross-network introduction requests yet.</p>
+            <div className="text-center py-12">
+              <div className="inline-flex p-4 bg-muted/50 rounded-full mb-4">
+                <Clock className="h-8 w-8 text-muted-foreground/60" />
+              </div>
+              <h3 className="font-serif text-xl font-light mb-2">No Rate Limits Active</h3>
+              <p className="text-muted-foreground/80">You haven't made any cross-network introduction requests yet.</p>
             </div>
           ) : (
             <div className="space-y-4">
@@ -321,60 +336,65 @@ export default function FederationPrivacyPage() {
                 return (
                   <div
                     key={`${limit.target_tenant_id}-${limit.requester_profile_id}`}
-                    className="border rounded-lg p-4"
+                    className="border border-border/60 rounded-lg p-5 hover:border-border transition-colors"
                   >
-                    <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center justify-between mb-4">
                       <div>
-                        <h4 className="font-medium">{limit.target_network_name}</h4>
-                        <p className="text-sm text-muted-foreground">
+                        <h4 className="font-medium text-foreground">{limit.target_network_name}</h4>
+                        <p className="text-sm text-muted-foreground/80">
                           Window started: {new Date(limit.window_start).toLocaleDateString()}
                         </p>
                       </div>
                       <div className="text-right">
-                        <div className={`text-lg font-bold ${getRateLimitColor(limit.request_count, maxRequests)}`}>
+                        <div className={`text-lg font-light ${getRateLimitColor(limit.request_count, maxRequests)}`}>
                           {limit.request_count} / {maxRequests}
                         </div>
-                        <div className="text-xs text-muted-foreground">requests</div>
+                        <div className="text-xs text-muted-foreground/70">requests</div>
                       </div>
                     </div>
 
-                    <div className="space-y-2">
+                    <div className="space-y-3">
                       <Progress value={progress} className="h-2" />
 
                       <div className="flex items-center justify-between">
                         {isNearLimit && (
-                          <div className="flex items-center space-x-1 text-yellow-600">
+                          <div className="flex items-center gap-1.5 text-amber-600">
                             <AlertTriangle className="h-4 w-4" />
-                            <span className="text-sm">Approaching limit</span>
+                            <span className="text-sm font-medium">Approaching limit</span>
                           </div>
                         )}
 
                         {limit.request_count >= maxRequests ? (
                           <AlertDialog>
                             <AlertDialogTrigger asChild>
-                              <Button size="sm" variant="outline">
+                              <Button size="sm" variant="outline" className="border-border/60 ml-auto bg-transparent">
                                 Reset Limit
                               </Button>
                             </AlertDialogTrigger>
                             <AlertDialogContent>
                               <AlertDialogHeader>
-                                <AlertDialogTitle>Reset Rate Limit</AlertDialogTitle>
-                                <AlertDialogDescription>
+                                <AlertDialogTitle className="font-serif text-2xl font-light">
+                                  Reset Rate Limit
+                                </AlertDialogTitle>
+                                <AlertDialogDescription className="text-muted-foreground/90">
                                   This will reset your rate limit for {limit.target_network_name} and start a new
                                   24-hour window. Use this sparingly to maintain good relationships with federated
                                   networks.
                                 </AlertDialogDescription>
                               </AlertDialogHeader>
                               <AlertDialogFooter>
-                                <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                <AlertDialogAction onClick={() => resetRateLimit(limit.target_tenant_id)}>
+                                <AlertDialogCancel className="border-border/60">Cancel</AlertDialogCancel>
+                                <AlertDialogAction
+                                  onClick={() => resetRateLimit(limit.target_tenant_id)}
+                                  className="bg-primary hover:bg-primary/90"
+                                >
                                   Reset Limit
                                 </AlertDialogAction>
                               </AlertDialogFooter>
                             </AlertDialogContent>
                           </AlertDialog>
                         ) : (
-                          <div className="text-sm text-muted-foreground">
+                          <div className="text-sm text-muted-foreground/80 ml-auto">
                             {maxRequests - limit.request_count} requests remaining
                           </div>
                         )}
@@ -388,14 +408,15 @@ export default function FederationPrivacyPage() {
         </CardContent>
       </Card>
 
-      {/* Privacy Guidelines */}
-      <Card className="border-blue-200 bg-blue-50">
-        <CardContent className="p-4">
-          <div className="flex items-start space-x-3">
-            <Shield className="h-5 w-5 text-blue-600 mt-0.5" />
+      <Card className="border-primary/20 bg-primary/5 shadow-sm">
+        <CardContent className="p-5">
+          <div className="flex items-start gap-3">
+            <div className="p-2 bg-primary/10 rounded-lg flex-shrink-0">
+              <Shield className="h-4 w-4 text-primary" />
+            </div>
             <div>
-              <h4 className="font-medium text-blue-800">Privacy & Security Guidelines</h4>
-              <div className="text-sm text-blue-700 mt-1 space-y-1">
+              <h4 className="font-medium text-foreground mb-2">Privacy & Security Guidelines</h4>
+              <div className="text-sm text-foreground/80 space-y-1.5 leading-relaxed">
                 <p>• Only non-PII data is shared across federated networks</p>
                 <p>• Email addresses and phone numbers remain private to your network</p>
                 <p>• Rate limits prevent spam and maintain network quality</p>

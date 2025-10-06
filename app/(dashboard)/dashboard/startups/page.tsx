@@ -11,48 +11,46 @@ export default async function StartupsPage() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Startup Discovery</h1>
-          <p className="text-muted-foreground">Discover promising companies and express interest</p>
+          <h1 className="text-3xl font-serif font-bold tracking-tight">Startup Discovery</h1>
+          <p className="text-muted-foreground/80">Discover promising companies and express interest</p>
         </div>
-        <Button size="sm">
+        <Button size="sm" className="bg-primary hover:bg-primary/90">
           <Plus className="h-4 w-4 mr-2" />
           Add Startup
         </Button>
       </div>
 
-      {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card className="bg-card/50 border-border/50">
+        <Card className="bg-card/30 border-border/60 hover:border-primary/40 transition-colors">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">Total Companies</CardTitle>
-            <Building2 className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium text-muted-foreground/80">Total Companies</CardTitle>
+            <Building2 className="h-4 w-4 text-muted-foreground/60" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">247</div>
-            <Badge variant="default" className="text-xs mt-1">
+            <Badge variant="default" className="text-xs mt-1 bg-primary/20 text-primary hover:bg-primary/30">
               +18 this month
             </Badge>
           </CardContent>
         </Card>
-        <Card className="bg-card/50 border-border/50">
+        <Card className="bg-card/30 border-border/60 hover:border-primary/40 transition-colors">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">High Momentum</CardTitle>
-            <TrendingUp className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium text-muted-foreground/80">High Momentum</CardTitle>
+            <TrendingUp className="h-4 w-4 text-muted-foreground/60" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">43</div>
-            <Badge variant="default" className="text-xs mt-1">
+            <Badge variant="default" className="text-xs mt-1 bg-primary/20 text-primary hover:bg-primary/30">
               Score 80+
             </Badge>
           </CardContent>
         </Card>
-        <Card className="bg-card/50 border-border/50">
+        <Card className="bg-card/30 border-border/60 hover:border-primary/40 transition-colors">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">Your Interests</CardTitle>
-            <Heart className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium text-muted-foreground/80">Your Interests</CardTitle>
+            <Heart className="h-4 w-4 text-muted-foreground/60" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">12</div>
@@ -61,33 +59,32 @@ export default async function StartupsPage() {
             </Badge>
           </CardContent>
         </Card>
-        <Card className="bg-card/50 border-border/50">
+        <Card className="bg-card/30 border-border/60 hover:border-primary/40 transition-colors">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">Network Interest</CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium text-muted-foreground/80">Network Interest</CardTitle>
+            <Users className="h-4 w-4 text-muted-foreground/60" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">156</div>
-            <Badge variant="default" className="text-xs mt-1">
+            <Badge variant="default" className="text-xs mt-1 bg-primary/20 text-primary hover:bg-primary/30">
               Total expressions
             </Badge>
           </CardContent>
         </Card>
       </div>
 
-      {/* Tabs for different views */}
       <Tabs defaultValue="discover" className="space-y-4">
-        <TabsList>
+        <TabsList className="bg-card/30 border border-border/60">
           <TabsTrigger value="discover">Discover</TabsTrigger>
           <TabsTrigger value="interested">My Interests</TabsTrigger>
           <TabsTrigger value="trending">Trending</TabsTrigger>
         </TabsList>
 
         <TabsContent value="discover" className="space-y-4">
-          <Card className="bg-card/50 border-border/50">
+          <Card className="bg-card/30 border-border/60">
             <CardHeader>
               <CardTitle>Company Discovery</CardTitle>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-muted-foreground/80">
                 Browse companies submitted by scouts and express your interest
               </p>
             </CardHeader>
@@ -98,10 +95,10 @@ export default async function StartupsPage() {
         </TabsContent>
 
         <TabsContent value="interested" className="space-y-4">
-          <Card className="bg-card/50 border-border/50">
+          <Card className="bg-card/30 border-border/60">
             <CardHeader>
               <CardTitle>Your Interests</CardTitle>
-              <p className="text-sm text-muted-foreground">Companies you've expressed interest in</p>
+              <p className="text-sm text-muted-foreground/80">Companies you've expressed interest in</p>
             </CardHeader>
             <CardContent>
               <StartupsDiscoveryTable filter="interested" userId={profile.id} />
@@ -110,10 +107,10 @@ export default async function StartupsPage() {
         </TabsContent>
 
         <TabsContent value="trending" className="space-y-4">
-          <Card className="bg-card/50 border-border/50">
+          <Card className="bg-card/30 border-border/60">
             <CardHeader>
               <CardTitle>Trending Companies</CardTitle>
-              <p className="text-sm text-muted-foreground">Companies with highest momentum and member interest</p>
+              <p className="text-sm text-muted-foreground/80">Companies with highest momentum and member interest</p>
             </CardHeader>
             <CardContent>
               <StartupsDiscoveryTable filter="trending" userId={profile.id} />

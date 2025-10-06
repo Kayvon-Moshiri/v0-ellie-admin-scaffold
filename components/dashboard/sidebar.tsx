@@ -20,7 +20,6 @@ import {
   Calendar,
   Mail,
   Settings,
-  Sparkles,
   ChevronLeft,
   ChevronRight,
   Shield,
@@ -156,20 +155,24 @@ export function DashboardSidebar({ profile }: DashboardSidebarProps) {
   return (
     <div
       className={cn(
-        "flex flex-col bg-card border-r border-border/50 transition-all duration-300",
+        "flex flex-col bg-sidebar border-r border-sidebar-border transition-all duration-300",
         isCollapsed ? "w-16" : "w-64",
       )}
     >
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-border/50">
+      <div className="flex items-center justify-between p-4 border-b border-sidebar-border">
         {!isCollapsed && (
-          <div className="flex items-center space-x-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-              <Sparkles className="h-5 w-5 text-primary-foreground" />
-            </div>
-            <div>
-              <h1 className="text-lg font-semibold">Ellie</h1>
-              <p className="text-xs text-muted-foreground">Admin Console</p>
+          <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-2">
+              <div className="flex gap-0.5">
+                <div className="w-1 h-6 bg-primary rounded-sm" />
+                <div className="w-1 h-6 bg-primary rounded-sm opacity-80" />
+                <div className="w-1 h-6 bg-primary rounded-sm opacity-60" />
+              </div>
+              <div>
+                <h1 className="text-lg font-bold tracking-wide text-foreground">ELEVATE</h1>
+                <p className="text-[10px] text-muted-foreground tracking-widest uppercase">Est. 2024</p>
+              </div>
             </div>
           </div>
         )}
@@ -180,9 +183,9 @@ export function DashboardSidebar({ profile }: DashboardSidebarProps) {
 
       {/* Tenant Info */}
       {!isCollapsed && (
-        <div className="p-4 border-b border-border/50">
+        <div className="p-4 border-b border-sidebar-border">
           <div className="flex items-center space-x-3">
-            <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
+            <div className="h-10 w-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center">
               <span className="text-sm font-semibold text-primary">{profile.tenant?.name?.charAt(0) || "E"}</span>
             </div>
             <div className="flex-1 min-w-0">
@@ -213,8 +216,8 @@ export function DashboardSidebar({ profile }: DashboardSidebarProps) {
                   <div
                     className={cn(
                       "flex items-center space-x-3 px-3 py-2 rounded-lg text-sm transition-colors",
-                      "hover:bg-accent hover:text-accent-foreground",
-                      isActive && !hasChildren && "bg-primary text-primary-foreground hover:bg-primary/90",
+                      "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+                      isActive && !hasChildren && "bg-primary/10 text-primary border border-primary/20",
                       isCollapsed && "justify-center",
                       item.comingSoon && "opacity-50 blur-[0.5px] cursor-not-allowed",
                     )}
@@ -222,9 +225,12 @@ export function DashboardSidebar({ profile }: DashboardSidebarProps) {
                     <Icon className="h-4 w-4 flex-shrink-0" />
                     {!isCollapsed && (
                       <>
-                        <span className="flex-1 text-left">{item.title}</span>
+                        <span className="flex-1 text-left font-medium">{item.title}</span>
                         {item.badge && (
-                          <Badge variant={isActive ? "secondary" : "outline"} className="h-5 text-xs">
+                          <Badge
+                            variant={isActive ? "default" : "outline"}
+                            className={cn("h-5 text-xs", isActive && "bg-primary text-primary-foreground")}
+                          >
                             {item.badge}
                           </Badge>
                         )}
@@ -240,17 +246,20 @@ export function DashboardSidebar({ profile }: DashboardSidebarProps) {
                   <div
                     className={cn(
                       "flex items-center space-x-3 px-3 py-2 rounded-lg text-sm transition-colors",
-                      "hover:bg-accent hover:text-accent-foreground",
-                      isActive && "bg-primary text-primary-foreground hover:bg-primary/90",
+                      "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+                      isActive && "bg-primary/10 text-primary border border-primary/20",
                       isCollapsed && "justify-center",
                     )}
                   >
                     <Icon className="h-4 w-4 flex-shrink-0" />
                     {!isCollapsed && (
                       <>
-                        <span className="flex-1">{item.title}</span>
+                        <span className="flex-1 font-medium">{item.title}</span>
                         {item.badge && (
-                          <Badge variant={isActive ? "secondary" : "outline"} className="h-5 text-xs">
+                          <Badge
+                            variant={isActive ? "default" : "outline"}
+                            className={cn("h-5 text-xs", isActive && "bg-primary text-primary-foreground")}
+                          >
                             {item.badge}
                           </Badge>
                         )}
@@ -272,14 +281,17 @@ export function DashboardSidebar({ profile }: DashboardSidebarProps) {
                         <div
                           className={cn(
                             "flex items-center space-x-3 px-3 py-2 rounded-lg text-sm transition-colors",
-                            "hover:bg-accent hover:text-accent-foreground",
-                            childIsActive && "bg-primary text-primary-foreground hover:bg-primary/90",
+                            "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+                            childIsActive && "bg-primary/10 text-primary border border-primary/20",
                           )}
                         >
                           <ChildIcon className="h-4 w-4 flex-shrink-0" />
-                          <span className="flex-1">{child.title}</span>
+                          <span className="flex-1 font-medium">{child.title}</span>
                           {child.badge && (
-                            <Badge variant={childIsActive ? "secondary" : "outline"} className="h-5 text-xs">
+                            <Badge
+                              variant={childIsActive ? "default" : "outline"}
+                              className={cn("h-5 text-xs", childIsActive && "bg-primary text-primary-foreground")}
+                            >
                               {child.badge}
                             </Badge>
                           )}
@@ -296,9 +308,9 @@ export function DashboardSidebar({ profile }: DashboardSidebarProps) {
 
       {/* User Info */}
       {!isCollapsed && (
-        <div className="p-4 border-t border-border/50">
+        <div className="p-4 border-t border-sidebar-border">
           <div className="flex items-center space-x-3">
-            <div className="h-8 w-8 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
+            <div className="h-8 w-8 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center">
               <span className="text-xs font-semibold text-primary">
                 {profile.display_name?.charAt(0) || profile.full_name?.charAt(0) || "U"}
               </span>

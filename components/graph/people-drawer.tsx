@@ -91,9 +91,9 @@ export function PeopleDrawer({ node, onClose, tenantId }: PeopleDrawerProps) {
   const getTierColor = (tier: string) => {
     switch (tier) {
       case "vip":
-        return "bg-purple-500 text-white"
+        return "bg-primary text-primary-foreground"
       case "member":
-        return "bg-blue-500 text-white"
+        return "bg-primary text-primary-foreground"
       case "guest":
         return "bg-gray-500 text-white"
       default:
@@ -147,7 +147,7 @@ export function PeopleDrawer({ node, onClose, tenantId }: PeopleDrawerProps) {
               <div className="flex items-center gap-2">
                 <SheetTitle className="text-xl">{data.label}</SheetTitle>
                 {data.isFederated && (
-                  <Badge variant="outline" className="text-xs bg-blue-50 text-blue-700">
+                  <Badge variant="outline" className="text-xs bg-primary/10 text-primary">
                     <Network className="h-3 w-3 mr-1" />
                     {data.sourceNetwork}
                   </Badge>
@@ -222,11 +222,11 @@ export function PeopleDrawer({ node, onClose, tenantId }: PeopleDrawerProps) {
                   <div className="text-xs text-muted-foreground">Activity Score</div>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-blue-600">{data.connections || 0}</div>
+                  <div className="text-2xl font-bold text-primary">{data.connections || 0}</div>
                   <div className="text-xs text-muted-foreground">Connections</div>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-purple-600">{Math.round((data.scarcityScore || 0) * 10)}</div>
+                  <div className="text-2xl font-bold text-primary">{Math.round((data.scarcityScore || 0) * 10)}</div>
                   <div className="text-xs text-muted-foreground">Scarcity (0-10)</div>
                 </div>
               </div>

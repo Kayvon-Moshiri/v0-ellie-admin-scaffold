@@ -45,9 +45,9 @@ export function EventsList() {
   if (events.length === 0) {
     return (
       <div className="text-center py-8">
-        <Calendar className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+        <Calendar className="h-12 w-12 text-muted-foreground/60 mx-auto mb-4" />
         <h3 className="text-lg font-semibold mb-2">No events yet</h3>
-        <p className="text-muted-foreground mb-4">Create your first networking event to get started</p>
+        <p className="text-muted-foreground/80 mb-4">Create your first networking event to get started</p>
         <Button asChild>
           <Link href="/dashboard/events/new">Create Event</Link>
         </Button>
@@ -71,7 +71,7 @@ export function EventsList() {
         const { status, color } = getEventStatus(event)
 
         return (
-          <Card key={event.id}>
+          <Card key={event.id} className="bg-card/50 border-border/50">
             <CardHeader>
               <div className="flex items-start justify-between">
                 <div>

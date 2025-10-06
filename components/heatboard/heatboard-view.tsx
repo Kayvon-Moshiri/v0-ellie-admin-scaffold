@@ -139,9 +139,9 @@ export function HeatboardView({ peopleHeat, recentActivities, startupHeat, start
   const getTierColor = (tier: string) => {
     switch (tier?.toLowerCase()) {
       case "vip":
-        return "bg-purple-500"
+        return "bg-primary"
       case "member":
-        return "bg-blue-500"
+        return "bg-primary"
       case "guest":
         return "bg-gray-500"
       case "startup":
@@ -157,10 +157,10 @@ export function HeatboardView({ peopleHeat, recentActivities, startupHeat, start
         return "bg-green-500"
       case "series-a":
       case "series a":
-        return "bg-blue-500"
+        return "bg-primary"
       case "series-b":
       case "series b":
-        return "bg-purple-500"
+        return "bg-primary"
       case "series-c":
       case "series c":
       case "series-c+":
@@ -185,53 +185,53 @@ export function HeatboardView({ peopleHeat, recentActivities, startupHeat, start
   return (
     <>
       <div className="grid gap-4 md:grid-cols-4" data-tour="heatboard-stats">
-        <Card>
+        <Card className="bg-card/50 border-border/50">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Network Heat</CardTitle>
-            <Flame className="h-4 w-4 text-muted-foreground" />
+            <Flame className="h-4 w-4 text-muted-foreground/60" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{Math.round(totalPeopleHeat)}</div>
-            <p className="text-xs text-muted-foreground">Activity score across top 20</p>
+            <p className="text-xs text-muted-foreground/80">Activity score across top 20</p>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="bg-card/50 border-border/50">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Startup Momentum</CardTitle>
-            <Zap className="h-4 w-4 text-muted-foreground" />
+            <Zap className="h-4 w-4 text-muted-foreground/60" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{Math.round(totalStartupHeat)}</div>
-            <p className="text-xs text-muted-foreground">Combined momentum score</p>
+            <p className="text-xs text-muted-foreground/80">Combined momentum score</p>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="bg-card/50 border-border/50">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">High Activity Members</CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
+            <Users className="h-4 w-4 text-muted-foreground/60" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{highActivityCount}</div>
-            <p className="text-xs text-muted-foreground">Activity score &gt; 80</p>
+            <p className="text-xs text-muted-foreground/80">Activity score &gt; 80</p>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="bg-card/50 border-border/50">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Recent Engagement</CardTitle>
-            <Building2 className="h-4 w-4 text-muted-foreground" />
+            <Building2 className="h-4 w-4 text-muted-foreground/60" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{recentEngagementCount}</div>
-            <p className="text-xs text-muted-foreground">Last 7 days</p>
+            <p className="text-xs text-muted-foreground/80">Last 7 days</p>
           </CardContent>
         </Card>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">
         {/* People Heat */}
-        <Card data-tour="people-heat">
+        <Card data-tour="people-heat" className="bg-card/50 border-border/50">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+            <CardTitle className="flex items-center gap-2 font-serif">
               <Users className="h-5 w-5" />
               People Heat
             </CardTitle>
@@ -240,7 +240,7 @@ export function HeatboardView({ peopleHeat, recentActivities, startupHeat, start
           <CardContent>
             <div className="space-y-3">
               {peopleWithTrends.length === 0 ? (
-                <p className="text-sm text-muted-foreground text-center py-8">No active members yet</p>
+                <p className="text-sm text-muted-foreground/80 text-center py-8">No active members yet</p>
               ) : (
                 peopleWithTrends.map((person, index) => (
                   <div
@@ -249,7 +249,7 @@ export function HeatboardView({ peopleHeat, recentActivities, startupHeat, start
                     onClick={() => setSelectedItem({ type: "person", data: person })}
                   >
                     <div className="flex items-center space-x-2">
-                      <span className="text-sm font-mono text-muted-foreground w-6">#{index + 1}</span>
+                      <span className="text-sm font-mono text-muted-foreground/80 w-6">#{index + 1}</span>
                       <Avatar className="h-10 w-10">
                         <AvatarFallback className={cn("text-white", getTierColor(person.membership_tier))}>
                           {person.full_name?.charAt(0) || "?"}
@@ -265,7 +265,7 @@ export function HeatboardView({ peopleHeat, recentActivities, startupHeat, start
                           </Badge>
                         )}
                       </div>
-                      <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                      <div className="flex items-center gap-2 text-xs text-muted-foreground/80">
                         <span>Score: {Math.round(person.activity_score || 0)}</span>
                         {person.membership_tier && (
                           <>
@@ -293,9 +293,9 @@ export function HeatboardView({ peopleHeat, recentActivities, startupHeat, start
         </Card>
 
         {/* Startup Heat */}
-        <Card data-tour="startup-heat">
+        <Card data-tour="startup-heat" className="bg-card/50 border-border/50">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+            <CardTitle className="flex items-center gap-2 font-serif">
               <Building2 className="h-5 w-5" />
               Startup Heat
             </CardTitle>
@@ -304,7 +304,7 @@ export function HeatboardView({ peopleHeat, recentActivities, startupHeat, start
           <CardContent>
             <div className="space-y-3">
               {startupsWithEngagement.length === 0 ? (
-                <p className="text-sm text-muted-foreground text-center py-8">No startups tracked yet</p>
+                <p className="text-sm text-muted-foreground/80 text-center py-8">No startups tracked yet</p>
               ) : (
                 startupsWithEngagement.map((startup, index) => (
                   <div
@@ -313,7 +313,7 @@ export function HeatboardView({ peopleHeat, recentActivities, startupHeat, start
                     onClick={() => setSelectedItem({ type: "startup", data: startup })}
                   >
                     <div className="flex items-center space-x-2">
-                      <span className="text-sm font-mono text-muted-foreground w-6">#{index + 1}</span>
+                      <span className="text-sm font-mono text-muted-foreground/80 w-6">#{index + 1}</span>
                       <div
                         className={cn(
                           "h-10 w-10 rounded-lg flex items-center justify-center text-white text-sm font-semibold",
@@ -338,7 +338,7 @@ export function HeatboardView({ peopleHeat, recentActivities, startupHeat, start
                           </Badge>
                         )}
                       </div>
-                      <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                      <div className="flex items-center gap-2 text-xs text-muted-foreground/80">
                         {startup.industry && <span>{startup.industry}</span>}
                         {startup.stage && (
                           <>
@@ -358,7 +358,7 @@ export function HeatboardView({ peopleHeat, recentActivities, startupHeat, start
                       <div className="text-right">
                         <div className="text-sm font-mono">{Math.round(startup.momentum_score || 0)}</div>
                         {startup.engagement_count > 0 && (
-                          <div className="text-xs text-muted-foreground">{startup.engagement_count} activities</div>
+                          <div className="text-xs text-muted-foreground/80">{startup.engagement_count} activities</div>
                         )}
                       </div>
                     </div>

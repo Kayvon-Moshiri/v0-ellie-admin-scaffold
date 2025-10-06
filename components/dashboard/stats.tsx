@@ -43,10 +43,12 @@ export function DashboardStats() {
       {stats.map((stat) => {
         const Icon = stat.icon
         return (
-          <Card key={stat.title} className="bg-card/50 border-border/50">
+          <Card key={stat.title} className="bg-card border-border hover:border-primary/30 transition-colors">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground">{stat.title}</CardTitle>
-              <Icon className="h-4 w-4 text-muted-foreground" />
+              <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center">
+                <Icon className="h-4 w-4 text-primary" />
+              </div>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{stat.value}</div>
@@ -59,7 +61,7 @@ export function DashboardStats() {
                         ? "destructive"
                         : "secondary"
                   }
-                  className="text-xs"
+                  className={stat.changeType === "positive" ? "bg-primary text-primary-foreground" : ""}
                 >
                   {stat.change}
                 </Badge>

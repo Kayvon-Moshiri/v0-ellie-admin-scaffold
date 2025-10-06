@@ -45,17 +45,17 @@ export function RealtimeActivity({ tenantId }: RealtimeActivityProps) {
 
   if (loading) {
     return (
-      <Card className="bg-card/50 border-border/50">
+      <Card className="bg-card border-border">
         <CardHeader>
           <CardTitle className="text-lg flex items-center">
-            <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+            <Loader2 className="h-4 w-4 mr-2 animate-spin text-primary" />
             Live Activity
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex items-center justify-center h-32">
             <div className="text-center space-y-2">
-              <Loader2 className="h-8 w-8 animate-spin mx-auto text-muted-foreground" />
+              <Loader2 className="h-8 w-8 animate-spin mx-auto text-primary" />
               <p className="text-sm text-muted-foreground">Loading real-time activity...</p>
             </div>
           </div>
@@ -66,7 +66,7 @@ export function RealtimeActivity({ tenantId }: RealtimeActivityProps) {
 
   if (error) {
     return (
-      <Card className="bg-card/50 border-border/50">
+      <Card className="bg-card border-border">
         <CardHeader>
           <CardTitle className="text-lg">Live Activity</CardTitle>
         </CardHeader>
@@ -80,26 +80,31 @@ export function RealtimeActivity({ tenantId }: RealtimeActivityProps) {
   }
 
   return (
-    <Card className="bg-card/50 border-border/50">
+    <Card className="bg-card border-border">
       <CardHeader>
         <CardTitle className="text-lg flex items-center">
-          <div className="h-2 w-2 bg-green-500 rounded-full mr-2 animate-pulse" />
+          <div className="h-2 w-2 bg-primary rounded-full mr-2 animate-pulse" />
           Live Activity
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         {activities.length === 0 ? (
           <div className="text-center space-y-2 py-8">
-            <Users className="h-8 w-8 text-muted-foreground mx-auto" />
+            <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
+              <Users className="h-6 w-6 text-primary" />
+            </div>
             <p className="text-sm text-muted-foreground">No recent activity</p>
           </div>
         ) : (
           activities.slice(0, 10).map((activity: any) => {
             const Icon = getActivityIcon(activity.activity_type)
             return (
-              <div key={activity.id} className="flex items-start space-x-3">
+              <div
+                key={activity.id}
+                className="flex items-start space-x-3 p-3 rounded-lg hover:bg-muted/50 transition-colors"
+              >
                 <div className="flex-shrink-0">
-                  <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
+                  <div className="h-8 w-8 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center">
                     <Icon className="h-4 w-4 text-primary" />
                   </div>
                 </div>

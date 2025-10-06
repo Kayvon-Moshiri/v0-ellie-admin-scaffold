@@ -10,46 +10,44 @@ export default async function PeoplePage() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">People</h1>
-          <p className="text-muted-foreground">Manage your network members and their connections</p>
+          <h1 className="text-3xl font-serif font-bold tracking-tight">People</h1>
+          <p className="text-muted-foreground/80">Manage your network members and their connections</p>
         </div>
         <div className="flex items-center space-x-2">
-          <Button variant="outline" size="sm">
+          <Button variant="outline" size="sm" className="border-border/60 hover:border-primary/40 bg-transparent">
             <Filter className="h-4 w-4 mr-2" />
             Filter
           </Button>
-          <Button variant="outline" size="sm">
+          <Button variant="outline" size="sm" className="border-border/60 hover:border-primary/40 bg-transparent">
             <Download className="h-4 w-4 mr-2" />
             Export
           </Button>
-          <Button size="sm">
+          <Button size="sm" className="bg-primary hover:bg-primary/90">
             <UserPlus className="h-4 w-4 mr-2" />
             Invite Member
           </Button>
         </div>
       </div>
 
-      {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card className="bg-card/50 border-border/50">
+        <Card className="bg-card/30 border-border/60 hover:border-primary/40 transition-colors">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">Total Members</CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium text-muted-foreground/80">Total Members</CardTitle>
+            <Users className="h-4 w-4 text-muted-foreground/60" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">1,247</div>
-            <Badge variant="default" className="text-xs mt-1">
+            <Badge variant="default" className="text-xs mt-1 bg-primary/20 text-primary hover:bg-primary/30">
               +12% this month
             </Badge>
           </CardContent>
         </Card>
-        <Card className="bg-card/50 border-border/50">
+        <Card className="bg-card/30 border-border/60 hover:border-primary/40 transition-colors">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">Active This Week</CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium text-muted-foreground/80">Active This Week</CardTitle>
+            <Users className="h-4 w-4 text-muted-foreground/60" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">892</div>
@@ -58,22 +56,22 @@ export default async function PeoplePage() {
             </Badge>
           </CardContent>
         </Card>
-        <Card className="bg-card/50 border-border/50">
+        <Card className="bg-card/30 border-border/60 hover:border-primary/40 transition-colors">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">New This Month</CardTitle>
-            <UserPlus className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium text-muted-foreground/80">New This Month</CardTitle>
+            <UserPlus className="h-4 w-4 text-muted-foreground/60" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">43</div>
-            <Badge variant="default" className="text-xs mt-1">
+            <Badge variant="default" className="text-xs mt-1 bg-primary/20 text-primary hover:bg-primary/30">
               +8 this week
             </Badge>
           </CardContent>
         </Card>
-        <Card className="bg-card/50 border-border/50">
+        <Card className="bg-card/30 border-border/60 hover:border-primary/40 transition-colors">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">Avg Connections</CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium text-muted-foreground/80">Avg Connections</CardTitle>
+            <Users className="h-4 w-4 text-muted-foreground/60" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">18.4</div>
@@ -84,8 +82,7 @@ export default async function PeoplePage() {
         </Card>
       </div>
 
-      {/* People Table */}
-      <Card className="bg-card/50 border-border/50">
+      <Card className="bg-card/30 border-border/60">
         <CardHeader>
           <CardTitle>Network Members</CardTitle>
         </CardHeader>

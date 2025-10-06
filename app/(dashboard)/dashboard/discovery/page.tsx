@@ -162,9 +162,9 @@ export default function DiscoveryPage() {
   const getTierColor = (tier: string) => {
     switch (tier) {
       case "vip":
-        return "bg-purple-100 text-purple-800"
+        return "bg-primary/20 text-primary"
       case "member":
-        return "bg-blue-100 text-blue-800"
+        return "bg-primary/20 text-primary"
       case "startup":
         return "bg-orange-100 text-orange-800"
       default:
@@ -177,9 +177,9 @@ export default function DiscoveryPage() {
       case "seed":
         return "bg-green-100 text-green-800"
       case "series-a":
-        return "bg-blue-100 text-blue-800"
+        return "bg-primary/20 text-primary"
       case "series-b":
-        return "bg-purple-100 text-purple-800"
+        return "bg-primary/20 text-primary"
       case "growth":
         return "bg-orange-100 text-orange-800"
       default:
@@ -192,31 +192,31 @@ export default function DiscoveryPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">Federated Discovery</h1>
-          <p className="text-muted-foreground">Discover people and companies across connected networks</p>
+          <h1 className="text-3xl font-bold font-serif">Federated Discovery</h1>
+          <p className="text-muted-foreground/80">Discover people and companies across connected networks</p>
         </div>
         <div className="flex items-center space-x-2">
-          <Globe className="h-5 w-5 text-muted-foreground" />
-          <span className="text-sm text-muted-foreground">Cross-network search</span>
+          <Globe className="h-5 w-5 text-muted-foreground/60" />
+          <span className="text-sm text-muted-foreground/80">Cross-network search</span>
         </div>
       </div>
 
       {/* Search and Filters */}
-      <Card>
+      <Card className="bg-card/50 border-border/50">
         <CardContent className="p-4">
           <div className="flex items-center space-x-4">
             <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground/60" />
               <Input
                 placeholder="Search across federated networks..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10"
+                className="pl-10 bg-background/50"
               />
             </div>
 
             <div className="flex items-center space-x-2">
-              <Filter className="h-4 w-4 text-muted-foreground" />
+              <Filter className="h-4 w-4 text-muted-foreground/60" />
 
               {activeTab === "people" && (
                 <>
@@ -224,7 +224,7 @@ export default function DiscoveryPage() {
                     value={filters.tier}
                     onValueChange={(value) => setFilters((prev) => ({ ...prev, tier: value }))}
                   >
-                    <SelectTrigger className="w-32">
+                    <SelectTrigger className="w-32 bg-background/50">
                       <SelectValue placeholder="Tier" />
                     </SelectTrigger>
                     <SelectContent>
@@ -239,7 +239,7 @@ export default function DiscoveryPage() {
                     value={filters.role}
                     onValueChange={(value) => setFilters((prev) => ({ ...prev, role: value }))}
                   >
-                    <SelectTrigger className="w-32">
+                    <SelectTrigger className="w-32 bg-background/50">
                       <SelectValue placeholder="Role" />
                     </SelectTrigger>
                     <SelectContent>
@@ -257,7 +257,7 @@ export default function DiscoveryPage() {
                   value={filters.stage}
                   onValueChange={(value) => setFilters((prev) => ({ ...prev, stage: value }))}
                 >
-                  <SelectTrigger className="w-32">
+                  <SelectTrigger className="w-32 bg-background/50">
                     <SelectValue placeholder="Stage" />
                   </SelectTrigger>
                   <SelectContent>
@@ -276,7 +276,7 @@ export default function DiscoveryPage() {
 
       {/* Discovery Results */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList>
+        <TabsList className="bg-muted/30">
           <TabsTrigger value="people" className="flex items-center space-x-2">
             <Users className="h-4 w-4" />
             <span>People</span>
@@ -293,17 +293,17 @@ export default function DiscoveryPage() {
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" />
             </div>
           ) : profiles.length === 0 ? (
-            <Card>
+            <Card className="bg-card/50 border-border/50">
               <CardContent className="p-8 text-center">
-                <Users className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+                <Users className="h-12 w-12 text-muted-foreground/60 mx-auto mb-4" />
                 <h3 className="text-lg font-medium mb-2">No Federated Profiles Found</h3>
-                <p className="text-muted-foreground">Try adjusting your search or check your federation settings.</p>
+                <p className="text-muted-foreground/80">Try adjusting your search or check your federation settings.</p>
               </CardContent>
             </Card>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {profiles.map((profile) => (
-                <Card key={profile.id} className="hover:shadow-md transition-shadow">
+                <Card key={profile.id} className="hover:shadow-md transition-shadow bg-card/50 border-border/50">
                   <CardContent className="p-4">
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex items-center space-x-3">
@@ -317,10 +317,10 @@ export default function DiscoveryPage() {
                         </Avatar>
                         <div>
                           <h3 className="font-medium">{profile.full_name}</h3>
-                          <p className="text-sm text-muted-foreground">{profile.source_network}</p>
+                          <p className="text-sm text-muted-foreground/80">{profile.source_network}</p>
                         </div>
                       </div>
-                      <Network className="h-4 w-4 text-blue-500" />
+                      <Network className="h-4 w-4 text-primary/60" />
                     </div>
 
                     <div className="space-y-2 mb-4">
@@ -372,24 +372,24 @@ export default function DiscoveryPage() {
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" />
             </div>
           ) : companies.length === 0 ? (
-            <Card>
+            <Card className="bg-card/50 border-border/50">
               <CardContent className="p-8 text-center">
-                <Building2 className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+                <Building2 className="h-12 w-12 text-muted-foreground/60 mx-auto mb-4" />
                 <h3 className="text-lg font-medium mb-2">No Federated Companies Found</h3>
-                <p className="text-muted-foreground">Try adjusting your search or check your federation settings.</p>
+                <p className="text-muted-foreground/80">Try adjusting your search or check your federation settings.</p>
               </CardContent>
             </Card>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {companies.map((company) => (
-                <Card key={company.id} className="hover:shadow-md transition-shadow">
+                <Card key={company.id} className="hover:shadow-md transition-shadow bg-card/50 border-border/50">
                   <CardContent className="p-4">
                     <div className="flex items-start justify-between mb-3">
                       <div>
                         <h3 className="font-medium">{company.name}</h3>
-                        <p className="text-sm text-muted-foreground">{company.source_network}</p>
+                        <p className="text-sm text-muted-foreground/80">{company.source_network}</p>
                       </div>
-                      <Network className="h-4 w-4 text-blue-500" />
+                      <Network className="h-4 w-4 text-primary/60" />
                     </div>
 
                     <div className="space-y-2 mb-4">
@@ -442,9 +442,9 @@ export default function DiscoveryPage() {
           </DialogHeader>
 
           <div className="space-y-4">
-            <div className="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
-              <Clock className="h-5 w-5 text-blue-600" />
-              <div className="text-sm text-blue-800">
+            <div className="flex items-center space-x-3 p-3 bg-primary/5 rounded-lg border border-primary/10">
+              <Clock className="h-5 w-5 text-primary/60" />
+              <div className="text-sm text-foreground/80">
                 Cross-network introductions require approval and may take 24-48 hours to process.
               </div>
             </div>
@@ -456,7 +456,7 @@ export default function DiscoveryPage() {
                 placeholder="Explain why you'd like to be introduced and what you hope to discuss..."
                 value={introContext}
                 onChange={(e) => setIntroContext(e.target.value)}
-                className="mt-1"
+                className="mt-1 bg-background/50"
                 rows={4}
               />
             </div>

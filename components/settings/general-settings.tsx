@@ -9,32 +9,53 @@ import { Textarea } from "@/components/ui/textarea"
 export function GeneralSettings() {
   return (
     <div className="space-y-6">
-      <Card>
-        <CardHeader>
-          <CardTitle>Platform Settings</CardTitle>
-          <CardDescription>Configure general platform settings and branding.</CardDescription>
+      <Card className="border-border/60 shadow-sm">
+        <CardHeader className="border-b border-border/60 bg-muted/30">
+          <CardTitle className="font-serif text-2xl font-light">Platform Settings</CardTitle>
+          <CardDescription className="text-muted-foreground/90">
+            Configure general platform settings and branding.
+          </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="p-6 space-y-5">
           <div className="space-y-2">
-            <Label htmlFor="platform-name">Platform Name</Label>
-            <Input id="platform-name" placeholder="Your Network Name" defaultValue="Ellie Admin" />
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="platform-description">Description</Label>
-            <Textarea
-              id="platform-description"
-              placeholder="Brief description of your network"
-              defaultValue="Professional networking platform"
+            <Label htmlFor="platform-name" className="text-sm font-medium">
+              Platform Name
+            </Label>
+            <Input
+              id="platform-name"
+              placeholder="Your Network Name"
+              defaultValue="Ellie Admin"
+              className="border-border/60 focus:border-primary"
             />
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="support-email">Support Email</Label>
-            <Input id="support-email" type="email" placeholder="support@yournetwork.com" />
+            <Label htmlFor="platform-description" className="text-sm font-medium">
+              Description
+            </Label>
+            <Textarea
+              id="platform-description"
+              placeholder="Brief description of your network"
+              defaultValue="Professional networking platform"
+              className="border-border/60 focus:border-primary min-h-[100px]"
+            />
           </div>
 
-          <Button>Save Changes</Button>
+          <div className="space-y-2">
+            <Label htmlFor="support-email" className="text-sm font-medium">
+              Support Email
+            </Label>
+            <Input
+              id="support-email"
+              type="email"
+              placeholder="support@yournetwork.com"
+              className="border-border/60 focus:border-primary"
+            />
+          </div>
+
+          <div className="pt-2">
+            <Button className="bg-primary hover:bg-primary/90 shadow-sm">Save Changes</Button>
+          </div>
         </CardContent>
       </Card>
     </div>

@@ -5,8 +5,8 @@ import "../styles/theme.css"
 import { Suspense } from "react"
 
 export const metadata: Metadata = {
-  title: "Ellie Admin",
-  description: "Professional networking and business intelligence platform",
+  title: "Elevate Admin",
+  description: "A catalyst for innovation - Private community for tech elite",
   generator: "v0.app",
 }
 
@@ -21,7 +21,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800&display=swap"
           rel="stylesheet"
         />
       </head>

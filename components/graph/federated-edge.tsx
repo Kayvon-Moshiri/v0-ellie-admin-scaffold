@@ -39,7 +39,7 @@ function FederatedEdge({
     if (data?.isCrossTenant) {
       return {
         ...baseStyle,
-        stroke: "#3b82f6", // Blue for cross-tenant
+        stroke: "#d1ecea",
         strokeDasharray: "8,4",
         strokeLinecap: "round" as const,
       }
@@ -52,7 +52,7 @@ function FederatedEdge({
       case "meeting":
         return { ...baseStyle, stroke: "#f59e0b" } // Amber
       case "message":
-        return { ...baseStyle, stroke: "#8b5cf6", strokeDasharray: "5,5" } // Purple, dashed
+        return { ...baseStyle, stroke: "#d1ecea", strokeDasharray: "5,5" } // Mint/teal, dashed
       default:
         return { ...baseStyle, stroke: "#6b7280" } // Gray
     }
@@ -71,13 +71,13 @@ function FederatedEdge({
       {/* Cross-tenant indicator */}
       {data?.isCrossTenant && (
         <g>
-          <circle cx={labelX} cy={labelY} r="8" fill="#3b82f6" stroke="#ffffff" strokeWidth="2" />
+          <circle cx={labelX} cy={labelY} r="8" fill="#d1ecea" stroke="#ffffff" strokeWidth="2" />
           <text
             x={labelX}
             y={labelY}
             textAnchor="middle"
             dominantBaseline="middle"
-            className="text-xs fill-white font-medium"
+            className="text-xs fill-primary-foreground font-medium"
           >
             ⚡
           </text>

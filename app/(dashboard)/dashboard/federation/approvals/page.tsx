@@ -149,10 +149,10 @@ export default function FederationApprovalsPage() {
     switch (tier) {
       case "vip":
       case "plus":
-        return "bg-purple-100 text-purple-800"
+        return "bg-primary/20 text-primary"
       case "member":
       case "core":
-        return "bg-blue-100 text-blue-800"
+        return "bg-primary/20 text-primary"
       case "startup":
         return "bg-orange-100 text-orange-800"
       default:
@@ -172,43 +172,47 @@ export default function FederationApprovalsPage() {
   }
 
   return (
-    <div className="space-y-6">
-      {/* Header */}
+    <div className="space-y-8">
       <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold">Cross-Network Approvals</h1>
-          <p className="text-muted-foreground">Review and approve introduction requests from other networks</p>
+        <div className="space-y-2">
+          <h1 className="font-serif text-4xl font-light tracking-tight text-foreground">Cross-Network Approvals</h1>
+          <p className="text-base text-muted-foreground/90">
+            Review and approve introduction requests from other networks
+          </p>
         </div>
-        <div className="flex items-center space-x-2">
-          <Badge variant="outline" className="bg-yellow-50 text-yellow-700">
+        <div className="flex items-center gap-2">
+          <Badge variant="outline" className="bg-amber-50 text-amber-700 border-amber-200/60 px-3 py-1">
             {pendingRequests.length} Pending
           </Badge>
         </div>
       </div>
 
-      {/* Pending Requests */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center space-x-2">
-            <Clock className="h-5 w-5 text-yellow-600" />
+      <Card className="border-border/60 shadow-sm">
+        <CardHeader className="border-b border-border/60 bg-muted/30">
+          <CardTitle className="flex items-center gap-2 font-serif text-2xl font-light">
+            <div className="p-2 bg-amber-50 rounded-lg">
+              <Clock className="h-5 w-5 text-amber-600" />
+            </div>
             <span>Pending Approvals</span>
           </CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="p-6">
           {pendingRequests.length === 0 ? (
-            <div className="text-center py-8">
-              <CheckCircle className="h-12 w-12 text-green-500 mx-auto mb-4" />
-              <h3 className="text-lg font-medium mb-2">All Caught Up!</h3>
-              <p className="text-muted-foreground">No pending cross-network introduction requests to review.</p>
+            <div className="text-center py-12">
+              <div className="inline-flex p-4 bg-green-50 rounded-full mb-4">
+                <CheckCircle className="h-8 w-8 text-green-600" />
+              </div>
+              <h3 className="font-serif text-xl font-light mb-2">All Caught Up!</h3>
+              <p className="text-muted-foreground/80">No pending cross-network introduction requests to review.</p>
             </div>
           ) : (
             <div className="space-y-4">
               {pendingRequests.map((request) => (
-                <div key={request.id} className="border rounded-lg p-4 bg-yellow-50/50">
+                <div key={request.id} className="border border-amber-200/60 rounded-lg p-5 bg-amber-50/30">
                   <div className="flex items-start justify-between mb-4">
-                    <div className="flex items-center space-x-4">
-                      <Avatar>
-                        <AvatarFallback>
+                    <div className="flex items-center gap-4">
+                      <Avatar className="h-11 w-11 border border-border/60">
+                        <AvatarFallback className="bg-muted/50 text-foreground/70 font-medium">
                           {request.requester.full_name
                             .split(" ")
                             .map((n) => n[0])
@@ -216,82 +220,100 @@ export default function FederationApprovalsPage() {
                         </AvatarFallback>
                       </Avatar>
                       <div>
-                        <div className="font-medium">{request.requester.full_name}</div>
-                        <div className="text-sm text-muted-foreground">from {request.requester_tenant.name}</div>
-                        <div className="flex items-center space-x-2 mt-1">
+                        <div className="font-medium text-foreground">{request.requester.full_name}</div>
+                        <div className="text-sm text-muted-foreground/80">from {request.requester_tenant.name}</div>
+                        <div className="flex items-center gap-2 mt-1.5">
                           <Badge variant="outline" className={getTierColor(request.requester.membership_tier)}>
                             {request.requester.membership_tier}
                           </Badge>
-                          <Badge variant="outline">{request.requester.role}</Badge>
+                          <Badge variant="outline" className="border-border/60">
+                            {request.requester.role}
+                          </Badge>
                         </div>
                       </div>
                     </div>
 
-                    <div className="flex items-center space-x-2">
-                      <Network className="h-4 w-4 text-blue-500" />
+                    <div className="flex items-center gap-2">
+                      <div className="p-1.5 bg-primary/10 rounded-lg">
+                        <Network className="h-4 w-4 text-primary" />
+                      </div>
                       <Badge className={getStatusColor(request.status)}>
                         {getStatusIcon(request.status)}
-                        <span className="ml-1 capitalize">{request.status.replace("_", " ")}</span>
+                        <span className="ml-1.5 capitalize">{request.status.replace("_", " ")}</span>
                       </Badge>
                     </div>
                   </div>
 
                   <div className="mb-4">
-                    <div className="text-sm font-medium mb-1">
+                    <div className="text-sm font-medium mb-2">
                       Wants introduction to: <span className="text-primary">{request.target.full_name}</span>
                     </div>
-                    <div className="text-sm text-muted-foreground bg-white p-3 rounded border">
-                      <strong>Context:</strong> {request.intro.context}
+                    <div className="text-sm text-foreground/80 bg-white border border-border/60 p-4 rounded-lg leading-relaxed">
+                      <strong className="text-foreground">Context:</strong> {request.intro.context}
                     </div>
                   </div>
 
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center gap-2">
                     <Button
                       size="sm"
                       onClick={() => handleApproval(request.id, "approve")}
                       disabled={processing}
-                      className="bg-green-600 hover:bg-green-700"
+                      className="bg-green-600 hover:bg-green-700 text-white shadow-sm"
                     >
-                      <CheckCircle className="h-4 w-4 mr-1" />
+                      <CheckCircle className="h-4 w-4 mr-1.5" />
                       Approve
                     </Button>
 
                     <Dialog>
                       <DialogTrigger asChild>
-                        <Button size="sm" variant="destructive" onClick={() => setSelectedRequest(request)}>
-                          <XCircle className="h-4 w-4 mr-1" />
+                        <Button
+                          size="sm"
+                          variant="destructive"
+                          onClick={() => setSelectedRequest(request)}
+                          className="shadow-sm"
+                        >
+                          <XCircle className="h-4 w-4 mr-1.5" />
                           Decline
                         </Button>
                       </DialogTrigger>
                       <DialogContent>
                         <DialogHeader>
-                          <DialogTitle>Decline Introduction Request</DialogTitle>
-                          <DialogDescription>
+                          <DialogTitle className="font-serif text-2xl font-light">
+                            Decline Introduction Request
+                          </DialogTitle>
+                          <DialogDescription className="text-muted-foreground/90">
                             Decline the introduction request from {request.requester.full_name}
                             to {request.target.full_name}.
                           </DialogDescription>
                         </DialogHeader>
 
                         <div className="space-y-4">
-                          <div>
-                            <Label htmlFor="decline-reason">Reason (Optional)</Label>
+                          <div className="space-y-2">
+                            <Label htmlFor="decline-reason" className="text-sm font-medium">
+                              Reason (Optional)
+                            </Label>
                             <Textarea
                               id="decline-reason"
                               placeholder="Provide a reason for declining this request..."
                               value={declineReason}
                               onChange={(e) => setDeclineReason(e.target.value)}
-                              className="mt-1"
+                              className="border-border/60 focus:border-primary"
                             />
                           </div>
 
-                          <div className="flex justify-end space-x-2">
-                            <Button variant="outline" onClick={() => setSelectedRequest(null)}>
+                          <div className="flex justify-end gap-3">
+                            <Button
+                              variant="outline"
+                              onClick={() => setSelectedRequest(null)}
+                              className="border-border/60"
+                            >
                               Cancel
                             </Button>
                             <Button
                               variant="destructive"
                               onClick={() => handleApproval(request.id, "decline")}
                               disabled={processing}
+                              className="shadow-sm"
                             >
                               {processing ? (
                                 <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
@@ -305,7 +327,7 @@ export default function FederationApprovalsPage() {
                       </DialogContent>
                     </Dialog>
 
-                    <div className="text-xs text-muted-foreground ml-auto">
+                    <div className="text-xs text-muted-foreground/70 ml-auto">
                       Requested {new Date(request.created_at).toLocaleDateString()}
                     </div>
                   </div>
@@ -316,22 +338,24 @@ export default function FederationApprovalsPage() {
         </CardContent>
       </Card>
 
-      {/* Processed Requests */}
       {processedRequests.length > 0 && (
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center space-x-2">
-              <MessageSquare className="h-5 w-5" />
+        <Card className="border-border/60 shadow-sm">
+          <CardHeader className="border-b border-border/60 bg-muted/30">
+            <CardTitle className="flex items-center gap-2 font-serif text-2xl font-light">
+              <MessageSquare className="h-5 w-5 text-muted-foreground" />
               <span>Recent Decisions</span>
             </CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="p-6">
             <div className="space-y-3">
               {processedRequests.slice(0, 10).map((request) => (
-                <div key={request.id} className="flex items-center justify-between p-3 border rounded-lg">
-                  <div className="flex items-center space-x-3">
-                    <Avatar className="h-8 w-8">
-                      <AvatarFallback className="text-xs">
+                <div
+                  key={request.id}
+                  className="flex items-center justify-between p-4 border border-border/60 rounded-lg hover:border-border transition-colors"
+                >
+                  <div className="flex items-center gap-3">
+                    <Avatar className="h-9 w-9 border border-border/60">
+                      <AvatarFallback className="text-xs bg-muted/50 text-foreground/70 font-medium">
                         {request.requester.full_name
                           .split(" ")
                           .map((n) => n[0])
@@ -339,19 +363,19 @@ export default function FederationApprovalsPage() {
                       </AvatarFallback>
                     </Avatar>
                     <div>
-                      <div className="text-sm font-medium">
+                      <div className="text-sm font-medium text-foreground">
                         {request.requester.full_name} → {request.target.full_name}
                       </div>
-                      <div className="text-xs text-muted-foreground">from {request.requester_tenant.name}</div>
+                      <div className="text-xs text-muted-foreground/80">from {request.requester_tenant.name}</div>
                     </div>
                   </div>
 
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center gap-3">
                     <Badge className={getStatusColor(request.status)}>
                       {getStatusIcon(request.status)}
-                      <span className="ml-1 capitalize">{request.status}</span>
+                      <span className="ml-1.5 capitalize">{request.status}</span>
                     </Badge>
-                    <div className="text-xs text-muted-foreground">
+                    <div className="text-xs text-muted-foreground/70">
                       {new Date(request.created_at).toLocaleDateString()}
                     </div>
                   </div>
@@ -362,14 +386,15 @@ export default function FederationApprovalsPage() {
         </Card>
       )}
 
-      {/* Guidelines */}
-      <Card className="border-blue-200 bg-blue-50">
-        <CardContent className="p-4">
-          <div className="flex items-start space-x-3">
-            <AlertTriangle className="h-5 w-5 text-blue-600 mt-0.5" />
+      <Card className="border-primary/20 bg-primary/5 shadow-sm">
+        <CardContent className="p-5">
+          <div className="flex items-start gap-3">
+            <div className="p-2 bg-primary/10 rounded-lg flex-shrink-0">
+              <AlertTriangle className="h-4 w-4 text-primary" />
+            </div>
             <div>
-              <h4 className="font-medium text-blue-800">Approval Guidelines</h4>
-              <div className="text-sm text-blue-700 mt-1 space-y-1">
+              <h4 className="font-medium text-foreground mb-2">Approval Guidelines</h4>
+              <div className="text-sm text-foreground/80 space-y-1.5 leading-relaxed">
                 <p>• Review the context and ensure the introduction makes sense</p>
                 <p>• Consider the target person's availability and preferences</p>
                 <p>• Approve requests that add value to your network members</p>

@@ -66,15 +66,15 @@ const COLUMN_CONFIG = {
   },
   pre_consented: {
     title: "Pre-consented",
-    color: "bg-blue-50 border-blue-200",
+    color: "bg-primary/10 border-primary/20",
     icon: MessageSquare,
-    iconColor: "text-blue-600",
+    iconColor: "text-primary",
   },
   scheduled: {
     title: "Scheduled",
-    color: "bg-purple-50 border-purple-200",
+    color: "bg-primary/10 border-primary/20",
     icon: Calendar,
-    iconColor: "text-purple-600",
+    iconColor: "text-primary",
   },
   completed: {
     title: "Completed",

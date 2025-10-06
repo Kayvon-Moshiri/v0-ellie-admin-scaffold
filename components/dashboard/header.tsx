@@ -26,16 +26,16 @@ export function DashboardHeader({ profile }: DashboardHeaderProps) {
 
   return (
     <>
-      <header className="flex items-center justify-between px-6 py-4 bg-card border-b border-border/50">
+      <header className="flex items-center justify-between px-6 py-4 bg-card border-b border-border">
         <div className="flex items-center space-x-4 flex-1 max-w-md">
           <Button
             variant="outline"
-            className="flex items-center gap-2 justify-start text-muted-foreground bg-background/50 hover:bg-background w-full max-w-sm"
+            className="flex items-center gap-2 justify-start text-muted-foreground bg-background hover:bg-muted/50 hover:border-primary/30 w-full max-w-sm transition-colors"
             onClick={() => setSearchOpen(true)}
           >
             <Search className="h-4 w-4" />
             <span className="flex-1 text-left">Search people, companies, events...</span>
-            <div className="flex items-center gap-1 text-xs">
+            <div className="flex items-center gap-1 text-xs bg-muted px-1.5 py-0.5 rounded">
               <Command className="h-3 w-3" />
               <span>K</span>
             </div>
@@ -45,9 +45,9 @@ export function DashboardHeader({ profile }: DashboardHeaderProps) {
         {/* Actions */}
         <div className="flex items-center space-x-4">
           {/* Notifications */}
-          <Button variant="ghost" size="sm" className="relative">
+          <Button variant="ghost" size="sm" className="relative hover:bg-muted/50">
             <Bell className="h-4 w-4" />
-            <Badge className="absolute -top-1 -right-1 h-5 w-5 p-0 text-xs">3</Badge>
+            <Badge className="absolute -top-1 -right-1 h-5 w-5 p-0 text-xs bg-primary text-primary-foreground">3</Badge>
           </Button>
 
           <TenantSwitcher />
@@ -55,8 +55,8 @@ export function DashboardHeader({ profile }: DashboardHeaderProps) {
           {/* User Menu */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="sm" className="flex items-center space-x-2">
-                <div className="h-7 w-7 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
+              <Button variant="ghost" size="sm" className="flex items-center space-x-2 hover:bg-muted/50">
+                <div className="h-7 w-7 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center">
                   <span className="text-xs font-semibold text-primary">
                     {profile.display_name?.charAt(0) || profile.full_name?.charAt(0) || "U"}
                   </span>

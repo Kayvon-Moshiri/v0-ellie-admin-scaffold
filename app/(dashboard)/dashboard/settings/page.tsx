@@ -18,17 +18,27 @@ export default async function SettingsPage() {
   const isAdmin = profile.role === "admin"
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Settings</h1>
-        <p className="text-muted-foreground">Manage your platform configuration and communication channels.</p>
+    <div className="space-y-8">
+      <div className="space-y-2">
+        <h1 className="font-serif text-4xl font-light tracking-tight text-foreground">Settings</h1>
+        <p className="text-base text-muted-foreground/90">
+          Manage your platform configuration and communication channels.
+        </p>
       </div>
 
-      <Tabs defaultValue="general" className="space-y-4">
-        <TabsList>
-          <TabsTrigger value="general">General</TabsTrigger>
-          <TabsTrigger value="channels">Channels</TabsTrigger>
-          {isAdmin && <TabsTrigger value="admin">Admin</TabsTrigger>}
+      <Tabs defaultValue="general" className="space-y-6">
+        <TabsList className="bg-muted/50 border border-border/60">
+          <TabsTrigger value="general" className="data-[state=active]:bg-background data-[state=active]:shadow-sm">
+            General
+          </TabsTrigger>
+          <TabsTrigger value="channels" className="data-[state=active]:bg-background data-[state=active]:shadow-sm">
+            Channels
+          </TabsTrigger>
+          {isAdmin && (
+            <TabsTrigger value="admin" className="data-[state=active]:bg-background data-[state=active]:shadow-sm">
+              Admin
+            </TabsTrigger>
+          )}
         </TabsList>
 
         <TabsContent value="general" className="space-y-4">

@@ -60,7 +60,7 @@ export function WelcomeBanner() {
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                   <div className="flex items-center space-x-2 text-sm">
-                    <Users className="h-4 w-4 text-blue-500" />
+                    <Users className="h-4 w-4 text-primary" />
                     <span>10 demo members across all tiers</span>
                   </div>
                   <div className="flex items-center space-x-2 text-sm">
@@ -68,7 +68,7 @@ export function WelcomeBanner() {
                     <span>3 hot startups with real traction</span>
                   </div>
                   <div className="flex items-center space-x-2 text-sm">
-                    <Sparkles className="h-4 w-4 text-purple-500" />
+                    <Sparkles className="h-4 w-4 text-primary" />
                     <span>Bursty activity patterns</span>
                   </div>
                 </div>

@@ -195,7 +195,7 @@ export function NetworkGraph({
         <MiniMap
           className="bg-card border border-border rounded-lg"
           nodeColor={(node) => {
-            if (node.data?.isFederated) return "#3b82f6" // Blue for federated
+            if (node.data?.isFederated) return "#d1ecea" // Updated federated node color from blue to mint/teal
             if (node.type === "person") {
               const score = node.data?.activityScore || 0
               if (score >= 80) return "hsl(var(--primary))"
@@ -214,7 +214,7 @@ export function NetworkGraph({
           data-tour="federation-panel"
         >
           <div className="flex items-center space-x-2">
-            <Network className="h-4 w-4 text-blue-500" />
+            <Network className="h-4 w-4 text-primary" /> {/* Updated icon color from blue to primary (mint/teal) */}
             <span className="font-medium text-sm">Federation</span>
           </div>
 
@@ -264,11 +264,12 @@ export function NetworkGraph({
                 <span>Meeting</span>
               </div>
               <div className="flex items-center space-x-2">
-                <div className="w-3 h-0.5 bg-purple-500" style={{ borderTop: "1px dashed" }}></div>
+                <div className="w-3 h-0.5 bg-primary" style={{ borderTop: "1px dashed" }}></div>
                 <span>Message</span>
               </div>
               <div className="flex items-center space-x-2">
-                <div className="w-3 h-0.5 bg-blue-500" style={{ borderTop: "2px dashed" }}></div>
+                <div className="w-3 h-0.5 bg-primary" style={{ borderTop: "2px dashed" }}></div>{" "}
+                {/* Updated cross-network line color from blue to primary */}
                 <span>Cross-Network</span>
               </div>
             </div>

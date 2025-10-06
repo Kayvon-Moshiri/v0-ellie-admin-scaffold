@@ -9,32 +9,30 @@ export default async function InvitesPage() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Invites</h1>
-          <p className="text-muted-foreground">Grow your network deliberately with targeted invitations</p>
+          <h1 className="text-3xl font-serif font-bold tracking-tight">Invites</h1>
+          <p className="text-muted-foreground/80">Grow your network deliberately with targeted invitations</p>
         </div>
       </div>
 
-      {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card className="bg-card/50 border-border/50">
+        <Card className="bg-card/30 border-border/60 hover:border-primary/40 transition-colors">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">Total Sent</CardTitle>
-            <Mail className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium text-muted-foreground/80">Total Sent</CardTitle>
+            <Mail className="h-4 w-4 text-muted-foreground/60" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">247</div>
-            <Badge variant="default" className="text-xs mt-1">
+            <Badge variant="default" className="text-xs mt-1 bg-primary/20 text-primary hover:bg-primary/30">
               +23 this week
             </Badge>
           </CardContent>
         </Card>
-        <Card className="bg-card/50 border-border/50">
+        <Card className="bg-card/30 border-border/60 hover:border-primary/40 transition-colors">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">Accepted</CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium text-muted-foreground/80">Accepted</CardTitle>
+            <Users className="h-4 w-4 text-muted-foreground/60" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">189</div>
@@ -43,22 +41,22 @@ export default async function InvitesPage() {
             </Badge>
           </CardContent>
         </Card>
-        <Card className="bg-card/50 border-border/50">
+        <Card className="bg-card/30 border-border/60 hover:border-primary/40 transition-colors">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">SMS Sent</CardTitle>
-            <MessageSquare className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium text-muted-foreground/80">SMS Sent</CardTitle>
+            <MessageSquare className="h-4 w-4 text-muted-foreground/60" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">43</div>
-            <Badge variant="default" className="text-xs mt-1">
+            <Badge variant="default" className="text-xs mt-1 bg-primary/20 text-primary hover:bg-primary/30">
               +12 this week
             </Badge>
           </CardContent>
         </Card>
-        <Card className="bg-card/50 border-border/50">
+        <Card className="bg-card/30 border-border/60 hover:border-primary/40 transition-colors">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">Pending</CardTitle>
-            <Clock className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium text-muted-foreground/80">Pending</CardTitle>
+            <Clock className="h-4 w-4 text-muted-foreground/60" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">34</div>

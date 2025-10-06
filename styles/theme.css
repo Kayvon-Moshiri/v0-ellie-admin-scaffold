@@ -3,9 +3,10 @@
 
 :root {
   /* Brand colors - can be overridden per tenant */
-  --brand-bg: #0f172a;
-  --brand-primary: #6366f1;
-  --brand-accent: #8b5cf6;
+  /* Updated from purple to mint/teal green */
+  --brand-bg: #232323;
+  --brand-primary: #d1ecea;
+  --brand-accent: #d1ecea;
 
   /* Derived brand colors for consistency */
   --brand-primary-hover: color-mix(in srgb, var(--brand-primary) 90%, white);

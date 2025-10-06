@@ -188,33 +188,36 @@ export function ChannelsSettings() {
 
   return (
     <div className="space-y-6">
-      <Card>
-        <CardHeader>
-          <CardTitle>Communication Channels</CardTitle>
-          <CardDescription>
+      <Card className="border-border/60 shadow-sm">
+        <CardHeader className="border-b border-border/60 bg-muted/30">
+          <CardTitle className="font-serif text-2xl font-light">Communication Channels</CardTitle>
+          <CardDescription className="text-muted-foreground/90">
             Configure your communication providers for white-label messaging. Each tenant can use their own SMTP, SMS,
             and messaging credentials.
           </CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="p-6">
           <div className="grid gap-4">
             {Object.entries(PROVIDER_CONFIGS).map(([type, config]) => {
               const existingProvider = providers.find((p) => p.provider_type === type)
 
               return (
-                <div key={type} className="flex items-center justify-between p-4 border rounded-lg">
+                <div
+                  key={type}
+                  className="flex items-center justify-between p-4 border border-border/60 rounded-lg hover:border-border transition-colors"
+                >
                   <div className="flex items-center gap-3">
                     <span className="text-2xl">{config.icon}</span>
                     <div>
                       <div className="flex items-center gap-2">
-                        <h3 className="font-medium">{config.name}</h3>
+                        <h3 className="font-medium text-foreground">{config.name}</h3>
                         {config.disabled && (
-                          <Badge variant="outline" className="text-xs">
+                          <Badge variant="outline" className="text-xs border-border/60">
                             Disabled
                           </Badge>
                         )}
                       </div>
-                      <p className="text-sm text-muted-foreground">{config.description}</p>
+                      <p className="text-sm text-muted-foreground/80">{config.description}</p>
                       {config.tooltip && <p className="text-xs text-amber-600 mt-1">{config.tooltip}</p>}
                     </div>
                   </div>
@@ -225,22 +228,37 @@ export function ChannelsSettings() {
                         <div className="flex items-center gap-2">
                           {getStatusIcon(existingProvider.status)}
                           {getStatusBadge(existingProvider.status)}
-                          {existingProvider.is_default && <Badge variant="secondary">Default</Badge>}
+                          {existingProvider.is_default && (
+                            <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
+                              Default
+                            </Badge>
+                          )}
                         </div>
                         <Button
                           variant="outline"
                           size="sm"
                           onClick={() => handleTestProvider(existingProvider.id)}
                           disabled={testingProvider === existingProvider.id}
+                          className="border-border/60"
                         >
                           <Send className="h-4 w-4 mr-1" />
                           {testingProvider === existingProvider.id ? "Testing..." : "Test"}
                         </Button>
-                        <Button variant="outline" size="sm" onClick={() => handleAddProvider(type)}>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => handleAddProvider(type)}
+                          className="border-border/60"
+                        >
                           <Settings className="h-4 w-4 mr-1" />
                           Configure
                         </Button>
-                        <Button variant="outline" size="sm" onClick={() => handleDeleteProvider(existingProvider.id)}>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => handleDeleteProvider(existingProvider.id)}
+                          className="border-border/60"
+                        >
                           <X className="h-4 w-4" />
                         </Button>
                       </>
@@ -251,6 +269,7 @@ export function ChannelsSettings() {
                         onClick={() => handleAddProvider(type)}
                         disabled={config.disabled}
                         title={config.tooltip}
+                        className="border-border/60"
                       >
                         <Plus className="h-4 w-4 mr-1" />
                         Add
